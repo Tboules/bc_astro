@@ -1,5 +1,12 @@
 ---
+import { contentfulClient } from "../lib/contentful";
+import type {  TypeHomePageSkeleton } from "../types/contentful";
 
+const homePage = await contentfulClient.withoutUnresolvableLinks.getEntries<TypeHomePageSkeleton>({
+  content_type: "homePage",
+})
+
+console.log(homePage.items[0].fields.homeBanner?.fields)
 ---
 
 <html lang="en">
@@ -11,7 +18,9 @@
 		<title>Boules Consulting</title>
 	</head>
 	<body>
-		<h1>whuh<h1>
+		<pre>
+      {JSON.stringify(homePage.items[0], null, 2)}
+    </pre>
 	</body>
   <style is:global>
     html,body {

@@ -44,3 +44,44 @@ in the services navigator.
 - [ ] Build out Blog page template and dynamic route logic
 - [ ] Set up server side endpoints for sending emails
 - [ ] Restore SEO deps like google and fb tag manager
+
+## &nbsp;
+
+## Problem Notes
+
+1. **Generating Types**
+
+When trying to generate types or write them manually, I noticed that there was an issue with
+the type suggestions on reference entries.
+
+For example:
+
+```javascript
+export interface TypeAboutUsFields {
+  slug?: EntryFieldTypes.Symbol;
+  aboutUsBanner: EntryFieldTypes.EntryLink<TypeBannerSkeleton>;
+  whatWeDo: EntryFieldTypes.EntryLink<TypeTextAndImageSkeleton>;
+  ourTeam: EntryFieldTypes.Array<
+    EntryFieldTypes.EntryLink<TypeEmployeeCardSkeleton>
+  >;
+  carouselImages?: EntryFieldTypes.EntryLink<TypeCarouselImagesSkeleton>;
+}
+```
+
+> With the above EntryFieldTypes.EntryLink, the data model would return the full entry, but the types
+> were not being suggested instead only the link type of sys was suggested but it was missing the actual fields from
+> the entry (the most important part).
+
+solution:
+
+use
+
+```javascript
+contentfulClient.withoutUnresolvableLinks.getEntries();
+```
+
+instead of
+
+```javascript
+contentfulClient.getEntries();
+```
