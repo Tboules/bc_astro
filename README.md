@@ -35,6 +35,7 @@ in the services navigator.
 
 ### Todo List
 
+- [x] Generate Types for all Contentful Data
 - [ ] Query all pages and content
 - [ ] Setup tailwind and incorporate Tailwind UI Comps
 - [ ] Create Site Layout
@@ -85,3 +86,7 @@ instead of
 ```javascript
 contentfulClient.getEntries();
 ```
+
+helpful resources:  
+[Github Issue](https://github.com/contentful/contentful.js/issues/1932)  
+[Contentful Typescript Readme](https://github.com/contentful/contentful.js/blob/master/TYPESCRIPT.md)
