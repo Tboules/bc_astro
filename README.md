@@ -5,9 +5,9 @@
 **Problem with Current Site:**
 
 1.  The site is built in Gatsby
-2.  The site uses Chakra, which is nice, but not
+2.  The site uses Chakra, which is nice, but not...
 3.  The site's deps are super out dated
-4.  The site is
+4.  The site is hosted in Netlify
 5.  It would be boring
 
 &nbsp;

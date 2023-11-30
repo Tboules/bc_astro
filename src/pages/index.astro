@@ -1,34 +1,44 @@
 ---
 import { contentfulClient } from "../lib/contentful";
-import type {  TypeHomePageSkeleton } from "../types/contentful";
+import type { TypeHomePageSkeleton } from "../types/contentful";
 
-const homePage = await contentfulClient.withoutUnresolvableLinks.getEntries<TypeHomePageSkeleton>({
-  content_type: "homePage",
-})
+const homePage =
+  await contentfulClient.withoutUnresolvableLinks.getEntries<TypeHomePageSkeleton>(
+    {
+      content_type: "homePage",
+    },
+  );
 
-console.log(homePage.items[0].fields.homeBanner?.fields)
+console.log(homePage.items[0].fields.homeBanner?.fields);
+homePage.items[0].fields.homeBanner?.fields.backgroundImage?.fields.file?.url;
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Boules Consulting</title>
-	</head>
-	<body>
-		<pre>
-      {JSON.stringify(homePage.items[0], null, 2)}
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Boules Consulting</title>
+  </head>
+  <body>
+    <pre>
+      {JSON.stringify(homePage.items[0],
+       null,
+        2)}
     </pre>
-	</body>
+    <div>
+      {JSON.stringify(homePage.items, null, 2)}
+    </div>
+  </body>
   <style is:global>
-    html,body {
-      font-family: Helvetica Neue, sans-serif;
+    html,
+    body {
+      font-family:
+        Helvetica Neue,
+        sans-serif;
       padding: 0;
       margin: 0;
     }
   </style>
 </html>
-
-
