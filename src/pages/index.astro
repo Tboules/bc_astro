@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import { contentfulClient } from "../lib/contentful";
 import type { TypeHomePageSkeleton } from "../types/contentful";
 import { Button } from "@/components/ui/button";
+import MainLayout from "@/components/layouts/main-layout.astro";
 
 const homePage =
   await contentfulClient.withoutUnresolvableLinks.getEntries<TypeHomePageSkeleton>(
@@ -12,25 +13,12 @@ const homePage =
   );
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
-      rel="stylesheet"
-    />
-    <title>Boules Consulting</title>
-  </head>
-  <body>
+<MainLayout title="Boules Consulting">
+  <main>
     <Button>Hello Butt</Button>
     <p>Poppins is fun</p>
     <pre>
-      {JSON.stringify(homePage.items[0], null, 2)}
+        {JSON.stringify(homePage.items[0], null, 2)}
     </pre>
-  </body>
-</html>
+  </main>
+</MainLayout>
