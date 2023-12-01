@@ -37,7 +37,7 @@ in the services navigator.
 
 - [x] Generate Types for all Contentful Data
 - [ ] Query all pages and content
-- [ ] Setup tailwind and incorporate Tailwind UI Comps
+- [x] Setup tailwind and incorporate Tailwind UI Comps
 - [ ] Create Site Layout
 - [ ] Create Redesign mockups and for pages from site rewrite document
 - [ ] Update Contentful data model to incorporate new changes
@@ -50,7 +50,7 @@ in the services navigator.
 
 ## Problem Notes
 
-1. **Generating Types**
+### **Generating Types**
 
 When trying to generate types or write them manually, I noticed that there was an issue with
 the type suggestions on reference entries.
@@ -90,3 +90,9 @@ contentfulClient.getEntries();
 helpful resources:  
 [Github Issue](https://github.com/contentful/contentful.js/issues/1932)  
 [Contentful Typescript Readme](https://github.com/contentful/contentful.js/blob/master/TYPESCRIPT.md)
+
+### **UI Change Decision**
+
+> In order to speed up development and facilitate better learning, I have decided to use shadcn ui.
+> In the set up of the library, be careful that you choose the proper alias names in your components.json.
+> If it's off even a little, the whole library falls apart.
