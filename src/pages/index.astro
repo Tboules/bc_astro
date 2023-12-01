@@ -1,6 +1,8 @@
 ---
+import "@/styles/globals.css";
 import { contentfulClient } from "../lib/contentful";
 import type { TypeHomePageSkeleton } from "../types/contentful";
+import { Button } from "@/components/ui/button";
 
 const homePage =
   await contentfulClient.withoutUnresolvableLinks.getEntries<TypeHomePageSkeleton>(
@@ -8,9 +10,6 @@ const homePage =
       content_type: "homePage",
     },
   );
-
-console.log(homePage.items[0].fields.homeBanner?.fields);
-homePage.items[0].fields.homeBanner?.fields.backgroundImage?.fields.file?.url;
 ---
 
 <html lang="en">
@@ -22,6 +21,7 @@ homePage.items[0].fields.homeBanner?.fields.backgroundImage?.fields.file?.url;
     <title>Boules Consulting</title>
   </head>
   <body>
+    <Button>Hello Butt</Button>
     <pre>
       {JSON.stringify(homePage.items[0],
        null,
@@ -31,14 +31,4 @@ homePage.items[0].fields.homeBanner?.fields.backgroundImage?.fields.file?.url;
       {JSON.stringify(homePage.items, null, 2)}
     </div>
   </body>
-  <style is:global>
-    html,
-    body {
-      font-family:
-        Helvetica Neue,
-        sans-serif;
-      padding: 0;
-      margin: 0;
-    }
-  </style>
 </html>
