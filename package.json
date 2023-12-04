@@ -10,13 +10,15 @@
     "preview": "astro preview",
     "astro": "astro",
     "pretty": "prettier --write . --plugin=prettier-plugin-astro",
-    "gen:types": "contentful-typescript-codegen --output @types/generated/contentful.d.ts"
+    "gen:types": "contentful-typescript-codegen --output @types/generated/contentful.d.ts",
+    "comp:add": "pnpm dlx shadcn-ui@latest add"
   },
   "dependencies": {
     "@astrojs/check": "^0.3.1",
     "@astrojs/react": "^3.0.6",
     "@astrojs/tailwind": "^5.0.2",
     "@contentful/rich-text-html-renderer": "^16.3.0",
+    "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-slot": "^1.0.2",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
