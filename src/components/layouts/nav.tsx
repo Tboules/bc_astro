@@ -1,9 +1,9 @@
-import { NAV_SCHEMA, findBasePath } from "@/lib/nav_schema";
+import { NAV_SCHEMA, findBasePath, type INavItem } from "@/lib/nav_schema";
 import Svgs from "../Svgs";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
-import { Menu } from "lucide-react";
+import { Home, Menu } from "lucide-react";
 
 export function WideNav() {
   return (
@@ -18,11 +18,7 @@ export function MobileNav() {
     <div className="md:hidden">
       <Sheet>
         <SheetTrigger asChild>
-          <Button
-            onClick={() => console.log("clicking")}
-            variant="outline"
-            size="icon"
-          >
+          <Button variant="outline" size="icon">
             <Menu />
           </Button>
         </SheetTrigger>
@@ -46,18 +42,38 @@ export function MobileNav() {
           </SheetHeader>
           <Separator className="mt-4 mb-6" />
           <nav>
-            <ul>
-              {NAV_SCHEMA.map((item) => {
-                return (
-                  <li>
-                    <h1>{item.display}</h1>
-                  </li>
-                );
-              })}
+            <ul className="flex flex-col gap-4">
+              {NAV_SCHEMA.map((item) => (
+                <MobileNavBaseCard key={item.display} item={item} />
+              ))}
             </ul>
           </nav>
         </SheetContent>
       </Sheet>
+    </div>
+  );
+}
+
+export function MobileNavBaseCard({ item }: { item: INavItem }) {
+  return (
+    <div>
+      <li className="border border-border rounded cursor-pointer hover:bg-secondary group">
+        <a className="flex gap-2 items-center w-full h-full p-4" href={item.path}>
+          <Home className='text-primary bg-secondary group-hover:text-white group-hover:bg-primary rounded w-8 h-8 p-1'/>
+          <p>{item.display}</p>
+        </a>
+      </li>
+      {item.sub && (
+        <ul className='flex flex-col pl-4 mt-2 gap-2'>
+          {item.sub.map((subItem) => {
+            return (
+              <li key={subItem.display}>
+                <a href={subItem.path}>{subItem.display}</a>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </div>
   );
 }
