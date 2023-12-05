@@ -1,4 +1,9 @@
-import { NAV_SCHEMA, findBasePath, type INavItem } from "@/lib/nav_schema";
+import {
+  NAV_SCHEMA,
+  findBasePath,
+  type INavItem,
+  NavIcon,
+} from "@/lib/nav_schema";
 import Svgs from "../Svgs";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
@@ -58,13 +63,16 @@ export function MobileNavBaseCard({ item }: { item: INavItem }) {
   return (
     <div>
       <li className="border border-border rounded cursor-pointer hover:bg-secondary group">
-        <a className="flex gap-2 items-center w-full h-full p-4" href={item.path}>
-          <Home className='text-primary bg-secondary group-hover:text-white group-hover:bg-primary rounded w-8 h-8 p-1'/>
+        <a
+          className="flex gap-2 items-center w-full h-full p-4"
+          href={item.path}
+        >
+          <NavIcon name={item.display} />
           <p>{item.display}</p>
         </a>
       </li>
       {item.sub && (
-        <ul className='flex flex-col pl-4 mt-2 gap-2'>
+        <ul className="flex flex-col pl-4 mt-2 gap-2">
           {item.sub.map((subItem) => {
             return (
               <li key={subItem.display}>
