@@ -1,47 +1,6 @@
 import * as React from "react";
 import { MobileNav, WideNav } from "./nav";
 
-type INavSchema = {
-  [key: string]: {
-    path: string;
-    display: string;
-    sub?: Omit<INavSchema, "sub">;
-  };
-};
-
-export const NAV_SCHEMA: INavSchema = {
-  home: {
-    path: "/",
-    display: "Home",
-  },
-  services: {
-    path: "/services",
-    display: "Services",
-    sub: {
-      socialEnterprises: {
-        path: "/social-enterprises",
-        display: "Social Enterprises",
-      },
-      governmentAgencies: {
-        path: "/government-agencies",
-        display: "Government Agencies",
-      },
-    },
-  },
-  aboutUs: {
-    path: "/about-us",
-    display: "About Us",
-  },
-  community: {
-    path: "/community",
-    display: "Community",
-  },
-  contact: {
-    path: "/contact",
-    display: "Contact",
-  },
-};
-
 export default function MainHeader({ children }: React.PropsWithChildren) {
   return (
     <>

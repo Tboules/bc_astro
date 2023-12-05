@@ -1,14 +1,57 @@
 import Svgs from "../Svgs";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetTitle,
-  SheetTrigger,
-} from "../ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
 import { Menu } from "lucide-react";
+
+type IBasePaths = "home" | "services" | "aboutUs" | "community" | "contact";
+type ISubPaths = "socialEnterprises" | "governmentAgencies";
+
+export type INavShema = {
+  [key in IBasePaths]: {
+    path: string;
+    display: string;
+    sub?: {
+      [key in ISubPaths]: {
+        path: string;
+        display: string;
+      };
+    };
+  };
+};
+
+export const NAV_SCHEMA: INavShema = {
+  home: {
+    path: "/",
+    display: "Home",
+  },
+  services: {
+    path: "/services",
+    display: "Services",
+    sub: {
+      socialEnterprises: {
+        path: "/services/social-enterprises",
+        display: "Social Enterprises",
+      },
+      governmentAgencies: {
+        path: "/services/government-agencies",
+        display: "Government Agencies",
+      },
+    },
+  },
+  aboutUs: {
+    path: "/about-us",
+    display: "About Us",
+  },
+  community: {
+    path: "/community",
+    display: "Community",
+  },
+  contact: {
+    path: "/contact",
+    display: "Contact",
+  },
+};
 
 export function WideNav() {
   return (
@@ -32,27 +75,35 @@ export function MobileNav() {
           </Button>
         </SheetTrigger>
         <SheetContent className={"sm:max-w-lg w-screen"}>
-          <a href="/">
-            <div className="flex items-center gap-2">
-              <Svgs
-                svgProps={{
-                  width: 40,
-                  height: 40,
-                  viewBox: "0 0 71 70",
-                }}
-                type="logo-color"
-              />
-              <h1 className="font-medium text-xl text-primary">
-                Boules Consulting
-              </h1>
-            </div>
-          </a>
+          <SheetHeader>
+            <a href={NAV_SCHEMA.home.path}>
+              <div className="flex items-center gap-2">
+                <Svgs
+                  svgProps={{
+                    width: 40,
+                    height: 40,
+                    viewBox: "0 0 71 70",
+                  }}
+                  type="logo-color"
+                />
+                <h1 className="font-medium text-xl text-primary">
+                  Boules Consulting
+                </h1>
+              </div>
+            </a>
+          </SheetHeader>
           <Separator className="mt-4 mb-6" />
-          <SheetTitle>Are you sure absolutely sure?</SheetTitle>
-          <SheetDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </SheetDescription>
+          <nav>
+            <ul>
+              {Object.values(NAV_SCHEMA).map((item) => {
+                return (
+                  <li>
+                    <h1>{item.display}</h1>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
         </SheetContent>
       </Sheet>
     </div>
