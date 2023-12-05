@@ -1,57 +1,9 @@
+import { NAV_SCHEMA, findBasePath } from "@/lib/nav_schema";
 import Svgs from "../Svgs";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
 import { Menu } from "lucide-react";
-
-type IBasePaths = "home" | "services" | "aboutUs" | "community" | "contact";
-type ISubPaths = "socialEnterprises" | "governmentAgencies";
-
-export type INavShema = {
-  [key in IBasePaths]: {
-    path: string;
-    display: string;
-    sub?: {
-      [key in ISubPaths]: {
-        path: string;
-        display: string;
-      };
-    };
-  };
-};
-
-export const NAV_SCHEMA: INavShema = {
-  home: {
-    path: "/",
-    display: "Home",
-  },
-  services: {
-    path: "/services",
-    display: "Services",
-    sub: {
-      socialEnterprises: {
-        path: "/services/social-enterprises",
-        display: "Social Enterprises",
-      },
-      governmentAgencies: {
-        path: "/services/government-agencies",
-        display: "Government Agencies",
-      },
-    },
-  },
-  aboutUs: {
-    path: "/about-us",
-    display: "About Us",
-  },
-  community: {
-    path: "/community",
-    display: "Community",
-  },
-  contact: {
-    path: "/contact",
-    display: "Contact",
-  },
-};
 
 export function WideNav() {
   return (
@@ -76,7 +28,7 @@ export function MobileNav() {
         </SheetTrigger>
         <SheetContent className={"sm:max-w-lg w-screen"}>
           <SheetHeader>
-            <a href={NAV_SCHEMA.home.path}>
+            <a href={findBasePath("Home")}>
               <div className="flex items-center gap-2">
                 <Svgs
                   svgProps={{
@@ -95,7 +47,7 @@ export function MobileNav() {
           <Separator className="mt-4 mb-6" />
           <nav>
             <ul>
-              {Object.values(NAV_SCHEMA).map((item) => {
+              {NAV_SCHEMA.map((item) => {
                 return (
                   <li>
                     <h1>{item.display}</h1>
