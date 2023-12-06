@@ -8,7 +8,7 @@ import Svgs from "../Svgs";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
-import { Home, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useNavContext } from "./header";
 import { cn } from "@/lib/utils";
 
@@ -68,7 +68,7 @@ export function MobileNavBaseCard({ item }: { item: INavItem }) {
     <div>
       <li
         className={cn(
-          "border border-border text-muted-foreground hover:text-foreground  rounded cursor-pointer hover:bg-secondary group",
+          "transition-all border border-border text-muted-foreground hover:text-foreground  rounded cursor-pointer hover:bg-secondary group",
           curPath == item.path ? "border-primary" : "",
         )}
       >

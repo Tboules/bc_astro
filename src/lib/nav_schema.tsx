@@ -72,13 +72,12 @@ export function findSubPath(name: ISubDisplays): string {
 }
 
 export function NavIcon({ route }: { route: INavItem | ISubNavItem }) {
-  const {curPath} = useNavContext()
-  
-  const styles = cn(
+  const { curPath } = useNavContext();
 
-    "text-primary bg-secondary group-hover:text-white group-hover:bg-primary rounded w-8 h-8 p-1",
-    curPath == route.path ? "bg-primary text-white" : "" 
-  )
+  const styles = cn(
+    "transition-all text-primary bg-secondary group-hover:text-white group-hover:bg-primary rounded w-8 h-8 p-1",
+    curPath == route.path ? "bg-primary text-white" : "",
+  );
 
   switch (route.display) {
     case "Home":
