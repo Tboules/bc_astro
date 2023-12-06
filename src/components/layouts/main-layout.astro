@@ -4,6 +4,7 @@ import LogoImage from "../../assets/logos/Boules-Consulting-Logo.svg";
 import { Image } from "astro:assets";
 
 const { title } = Astro.props;
+const curPath = new URL(Astro.url).pathname
 ---
 
 <html lang="en">
@@ -21,7 +22,7 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <MainHeader client:load>
+    <MainHeader curPath={curPath} client:load>
       <div class="flex items-center gap-2">
         <Image src={LogoImage} class="h-12 w-12" alt="Boules Consulting Logo" />
         <h1 class="font-medium text-xl text-primary">Boules Consulting</h1>

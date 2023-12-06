@@ -9,6 +9,8 @@ import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
 import { Home, Menu } from "lucide-react";
+import { useNavContext } from "./header";
+import { cn } from "@/lib/utils";
 
 export function WideNav() {
   return (
@@ -60,14 +62,21 @@ export function MobileNav() {
 }
 
 export function MobileNavBaseCard({ item }: { item: INavItem }) {
+  const { curPath } = useNavContext();
+
   return (
     <div>
-      <li className="border border-border rounded cursor-pointer hover:bg-secondary group">
+      <li
+        className={cn(
+          "border border-border text-muted-foreground hover:text-foreground  rounded cursor-pointer hover:bg-secondary group",
+          curPath == item.path ? "border-primary" : "",
+        )}
+      >
         <a
           className="flex gap-2 items-center w-full h-full p-4"
           href={item.path}
         >
-          <NavIcon name={item.display} />
+          <NavIcon route={item} />
           <p>{item.display}</p>
         </a>
       </li>
@@ -76,7 +85,12 @@ export function MobileNavBaseCard({ item }: { item: INavItem }) {
           {item.sub.map((subItem) => {
             return (
               <li key={subItem.display}>
-                <a href={subItem.path}>{subItem.display}</a>
+                <a
+                  className="flex p-2 text-foreground bg-secondary rounded "
+                  href={subItem.path}
+                >
+                  {subItem.display}
+                </a>
               </li>
             );
           })}

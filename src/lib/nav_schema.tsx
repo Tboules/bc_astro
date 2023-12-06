@@ -1,3 +1,4 @@
+import { useNavContext } from "@/components/layouts/header";
 import {
   BookOpenText,
   HelpingHand,
@@ -5,6 +6,7 @@ import {
   PhoneOutgoing,
   Sprout,
 } from "lucide-react";
+import { cn } from "./utils";
 
 export type IBaseDisplays =
   | "Home"
@@ -69,11 +71,16 @@ export function findSubPath(name: ISubDisplays): string {
   return route!.path;
 }
 
-export function NavIcon({ name }: { name: IBaseDisplays | ISubDisplays }) {
-  const styles =
-    "text-primary bg-secondary group-hover:text-white group-hover:bg-primary rounded w-8 h-8 p-1";
+export function NavIcon({ route }: { route: INavItem | ISubNavItem }) {
+  const {curPath} = useNavContext()
+  
+  const styles = cn(
 
-  switch (name) {
+    "text-primary bg-secondary group-hover:text-white group-hover:bg-primary rounded w-8 h-8 p-1",
+    curPath == route.path ? "bg-primary text-white" : "" 
+  )
+
+  switch (route.display) {
     case "Home":
       return <Home className={styles} />;
     case "Services":
