@@ -19,6 +19,7 @@
     "@astrojs/tailwind": "^5.0.2",
     "@contentful/rich-text-html-renderer": "^16.3.0",
     "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-navigation-menu": "^1.1.4",
     "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@types/react": "^18.0.21",

@@ -11,12 +11,59 @@ import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
 import { Menu } from "lucide-react";
 import { useNavContext } from "./header";
 import { cn } from "@/lib/utils";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 
 export function WideNav() {
   return (
     <div className="hidden md:flex">
-      <h1>Wide Menu</h1>
+      <NavigationMenu>
+        <NavigationMenuList>
+          {NAV_SCHEMA.map((item) => (
+            <WideNavItem key={item.display} item={item} />
+          ))}
+        </NavigationMenuList>
+      </NavigationMenu>
     </div>
+  );
+}
+
+function WideNavItem({ item }: { item: INavItem }) {
+  return (
+    <NavigationMenuItem
+      className={cn(
+        navigationMenuTriggerStyle(),
+        item.display == "Contact" ? "bg-primary text-white" : "",
+      )}
+    >
+      {item.display != "Services" ? (
+        <a href={item.path}>{item.display}</a>
+      ) : (
+        <>
+          <a href={item.path}>
+            <NavigationMenuTrigger>{item.display}</NavigationMenuTrigger>
+          </a>
+          <NavigationMenuContent>
+            <ul>
+              {item.sub?.map((subItem) => (
+                <li key={subItem.display}>
+                  <NavigationMenuLink asChild>
+                    <a href={subItem.path}>{subItem.display}</a>
+                  </NavigationMenuLink>
+                </li>
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </>
+      )}
+    </NavigationMenuItem>
   );
 }
 
