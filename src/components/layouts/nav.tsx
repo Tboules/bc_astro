@@ -86,7 +86,7 @@ export function MobileNavBaseCard({ item }: { item: INavItem }) {
             return (
               <li key={subItem.display}>
                 <a
-                  className="flex p-2 text-foreground bg-secondary rounded "
+                  className="flex px-4 py-2 hover:italic text-foreground bg-secondary rounded "
                   href={subItem.path}
                 >
                   {subItem.display}
