@@ -37,25 +37,26 @@ export function WideNav() {
 
 function WideNavItem({ item }: { item: INavItem }) {
   return (
-    <NavigationMenuItem
-      className={cn(
-        navigationMenuTriggerStyle(),
-        item.display == "Contact" ? "bg-primary text-white" : "",
-      )}
-    >
+    <NavigationMenuItem>
       {item.display != "Services" ? (
-        <a href={item.path}>{item.display}</a>
+        <NavigationMenuLink
+          className={cn(
+            navigationMenuTriggerStyle(),
+            item.display == "Contact" ? "bg-primary text-white" : "",
+          )}
+          href={item.path}
+        >
+          {item.display}
+        </NavigationMenuLink>
       ) : (
         <>
-          <a href={item.path}>
-            <NavigationMenuTrigger>{item.display}</NavigationMenuTrigger>
-          </a>
+          <NavigationMenuTrigger>{item.display}</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul>
               {item.sub?.map((subItem) => (
                 <li key={subItem.display}>
-                  <NavigationMenuLink asChild>
-                    <a href={subItem.path}>{subItem.display}</a>
+                  <NavigationMenuLink href={subItem.path}>
+                    {subItem.display}
                   </NavigationMenuLink>
                 </li>
               ))}
@@ -76,7 +77,7 @@ export function MobileNav() {
             <Menu />
           </Button>
         </SheetTrigger>
-        <SheetContent className={"sm:max-w-lg w-screen"}>
+        <SheetContent className={"sm:max-w-md w-screen"}>
           <SheetHeader>
             <a href={findBasePath("Home")}>
               <div className="flex items-center gap-2">
