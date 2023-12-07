@@ -3,7 +3,9 @@ import {
   BookOpenText,
   HelpingHand,
   Home,
+  Landmark,
   PhoneOutgoing,
+  Ribbon,
   Sprout,
 } from "lucide-react";
 import { cn } from "./utils";
@@ -90,6 +92,10 @@ export function NavIcon({ route }: { route: INavItem | ISubNavItem }) {
       return <BookOpenText className={styles} />;
     case "Contact":
       return <PhoneOutgoing className={styles} />;
+    case "Social Enterprises":
+      return <Ribbon className={styles} />;
+    case "Government Agencies":
+      return <Landmark className={styles} />;
     default:
       return <Home className={styles} />;
   }

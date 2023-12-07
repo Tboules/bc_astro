@@ -8,7 +8,7 @@ import Svgs from "../Svgs";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
-import { Menu } from "lucide-react";
+import { Landmark, Menu } from "lucide-react";
 import { useNavContext } from "./header";
 import { cn } from "@/lib/utils";
 import {
@@ -36,13 +36,18 @@ export function WideNav() {
 }
 
 function WideNavItem({ item }: { item: INavItem }) {
+  const { curPath } = useNavContext();
+
   return (
     <NavigationMenuItem>
       {item.display != "Services" ? (
         <NavigationMenuLink
           className={cn(
             navigationMenuTriggerStyle(),
-            item.display == "Contact" ? "bg-primary text-white" : "",
+            item.path == curPath ? "text-primary" : "",
+            item.display == "Contact"
+              ? "bg-primary text-primary-foreground"
+              : "",
           )}
           href={item.path}
         >
@@ -51,12 +56,25 @@ function WideNavItem({ item }: { item: INavItem }) {
       ) : (
         <>
           <NavigationMenuTrigger>{item.display}</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul>
+          <NavigationMenuContent className="p-4">
+            <ul className="flex gap-2">
               {item.sub?.map((subItem) => (
                 <li key={subItem.display}>
-                  <NavigationMenuLink href={subItem.path}>
-                    {subItem.display}
+                  <NavigationMenuLink
+                    className={cn(
+                      "flex flex-col w-48 p-2 pt-10 gap-2 shadow-sm border border-border rounded hover:bg-primary-foreground group transition-all",
+                      curPath == subItem.path ? "border-primary" : "",
+                    )}
+                    href={subItem.path}
+                  >
+                    <NavIcon route={subItem} />
+                    <h3 className="text-xl font-medium text-primary">
+                      {subItem.display}
+                    </h3>
+                    <p className="text-foreground italic text-xs">
+                      Lorem ipsum dolor sit amet, qui minim labore adipisicing
+                      minim{" "}
+                    </p>
                   </NavigationMenuLink>
                 </li>
               ))}
