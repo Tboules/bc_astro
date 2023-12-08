@@ -38,7 +38,7 @@ in the services navigator.
 - [x] Generate Types for all Contentful Data
 - [ ] Query all pages and content
 - [x] Setup tailwind and incorporate Tailwind UI Comps
-- [ ] Create Site Layout
+- [x] Create Site Layout
 - [ ] Create Redesign mockups and for pages from site rewrite document
 - [ ] Update Contentful data model to incorporate new changes
 - [ ] Build out each major page
