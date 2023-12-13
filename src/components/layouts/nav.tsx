@@ -8,7 +8,7 @@ import Svgs from "../Svgs";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet";
-import { Landmark, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { useNavContext } from "./header";
 import { cn } from "@/lib/utils";
 import {
@@ -36,7 +36,7 @@ export function WideNav() {
 }
 
 function WideNavItem({ item }: { item: INavItem }) {
-  const { curPath } = useNavContext();
+  const { isBasePath, isCurrentPath } = useNavContext();
 
   return (
     <NavigationMenuItem>
@@ -45,7 +45,7 @@ function WideNavItem({ item }: { item: INavItem }) {
           className={cn(
             navigationMenuTriggerStyle(),
             "bg-transparent",
-            item.path == curPath ? "text-primary" : "",
+            isBasePath(item.path) ? "text-primary" : "",
             item.display == "Contact"
               ? "bg-primary text-primary-foreground"
               : "",
@@ -56,7 +56,12 @@ function WideNavItem({ item }: { item: INavItem }) {
         </NavigationMenuLink>
       ) : (
         <>
-          <NavigationMenuTrigger className="bg-transparent">
+          <NavigationMenuTrigger
+            className={cn(
+              "bg-transparent",
+              isBasePath(item.path) ? "text-primary" : "",
+            )}
+          >
             {item.display}
           </NavigationMenuTrigger>
           <NavigationMenuContent className="p-4">
@@ -66,7 +71,9 @@ function WideNavItem({ item }: { item: INavItem }) {
                   <NavigationMenuLink
                     className={cn(
                       "flex flex-col w-48 p-2 pt-10 gap-2 shadow-sm border border-border rounded hover:bg-primary-foreground group transition-all",
-                      curPath == subItem.path ? "border-primary" : "",
+                      isCurrentPath(subItem.path)
+                        ? "border-primary"
+                        : "",
                     )}
                     href={subItem.path}
                   >
@@ -131,14 +138,14 @@ export function MobileNav() {
 }
 
 export function MobileNavBaseCard({ item }: { item: INavItem }) {
-  const { curPath } = useNavContext();
+  const { isBasePath } = useNavContext();
 
   return (
     <div>
       <li
         className={cn(
           "transition-all border border-border text-muted-foreground hover:text-foreground  rounded cursor-pointer hover:bg-secondary group",
-          curPath == item.path ? "border-primary" : "",
+          isBasePath(item.path) ? "border-primary" : "",
         )}
       >
         <a

@@ -1,7 +1,7 @@
 ---
 import MainHeader from "./header";
 import LogoImage from "../../assets/logos/Boules-Consulting-Logo.svg";
-import BackgoundLogo from '../../assets/logos/Boules-Consulting-Logo-Big.svg';
+import BackgoundLogo from "../../assets/logos/Boules-Consulting-Logo-Big.svg";
 import { Image } from "astro:assets";
 
 const { title } = Astro.props;
@@ -30,6 +30,10 @@ const curPath = new URL(Astro.url).pathname;
       </div>
     </MainHeader>
     <slot />
-    <Image class='fixed top-0 left-0 right-0 bottom-0 w-screen max-w-7xl m-auto opacity-[0.03] -z-50 rotate-45' src={BackgoundLogo} alt='Large Background Logo'>
+    <Image
+      class="fixed top-0 left-0 right-0 bottom-0 w-screen max-w-7xl m-auto opacity-[0.03] -z-50 rotate-45"
+      src={BackgoundLogo}
+      alt="Large Background Logo"
+    />
   </body>
 </html>
