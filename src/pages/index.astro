@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import { contentfulClient } from "../lib/contentful";
 import type { TypeHomePageSkeleton } from "../types/contentful";
 import MainLayout from "@/components/layouts/main-layout.astro";
+import Hero from "./_components/hero.astro";
 
 const homePage =
   await contentfulClient.withoutUnresolvableLinks.getEntries<TypeHomePageSkeleton>(
@@ -10,10 +11,13 @@ const homePage =
       content_type: "homePage",
     },
   );
+
+// const homeFields = homePage.items[0].fields
 ---
 
 <MainLayout title="Home - Boules Consulting">
   <main class="overflow-x-hidden">
+    <Hero />
     <pre>
         {JSON.stringify(homePage.items[0], null, 2)}
     </pre>
