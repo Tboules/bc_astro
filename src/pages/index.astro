@@ -3,7 +3,6 @@ import "@/styles/globals.css";
 import { contentfulClient } from "../lib/contentful";
 import type { TypeHomePageSkeleton } from "../types/contentful";
 import MainLayout from "@/components/layouts/main-layout.astro";
-import ConsoleButt from "@/components/console-butt";
 
 const homePage =
   await contentfulClient.withoutUnresolvableLinks.getEntries<TypeHomePageSkeleton>(
@@ -15,8 +14,6 @@ const homePage =
 
 <MainLayout title="Home - Boules Consulting">
   <main class="overflow-x-hidden">
-    <ConsoleButt client:load />
-    <p>Poppins is fun</p>
     <pre>
         {JSON.stringify(homePage.items[0], null, 2)}
     </pre>
