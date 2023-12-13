@@ -44,6 +44,7 @@ function WideNavItem({ item }: { item: INavItem }) {
         <NavigationMenuLink
           className={cn(
             navigationMenuTriggerStyle(),
+            "bg-transparent",
             item.path == curPath ? "text-primary" : "",
             item.display == "Contact"
               ? "bg-primary text-primary-foreground"
@@ -55,7 +56,9 @@ function WideNavItem({ item }: { item: INavItem }) {
         </NavigationMenuLink>
       ) : (
         <>
-          <NavigationMenuTrigger>{item.display}</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="bg-transparent">
+            {item.display}
+          </NavigationMenuTrigger>
           <NavigationMenuContent className="p-4">
             <ul className="flex gap-2">
               {item.sub?.map((subItem) => (
