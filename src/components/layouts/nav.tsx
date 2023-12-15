@@ -71,9 +71,7 @@ function WideNavItem({ item }: { item: INavItem }) {
                   <NavigationMenuLink
                     className={cn(
                       "flex flex-col w-48 p-2 pt-10 gap-2 shadow-sm border border-border rounded hover:bg-primary-foreground group transition-all",
-                      isCurrentPath(subItem.path)
-                        ? "border-primary"
-                        : "",
+                      isCurrentPath(subItem.path) ? "border-primary" : "",
                     )}
                     href={subItem.path}
                   >

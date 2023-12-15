@@ -1,7 +1,12 @@
 ---
-
+import HeroTriangle from "../../assets/shapes/hero_triangle.svg";
+import { Image } from "astro:assets";
 ---
 
-<div>
-  <p>Hello Hero Section</p>
+<div class="w-screen relative">
+  <Image
+    alt="background triangle on hero"
+    class="-z-10 max-w-[120rem] absolute top-0 left-1/2 w-full m-auto -translate-x-[50.5%]"
+    src={HeroTriangle}
+  />
 </div>

@@ -30,10 +30,10 @@ export function NavContextProvider({ children, curPath }: Props) {
   }
 
   function isCurrentPath(target: string): boolean {
-    const slugs = curPath.split('/').slice(1);
-    const targArr = target.split('/')
+    const slugs = curPath.split("/").slice(1);
+    const targArr = target.split("/");
 
-    return slugs.includes(targArr[targArr.length - 1])
+    return slugs.includes(targArr[targArr.length - 1]);
   }
 
   return (
