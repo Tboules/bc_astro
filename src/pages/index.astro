@@ -12,12 +12,12 @@ const homePage =
     },
   );
 
-// const homeFields = homePage.items[0].fields
+const homeFields = homePage.items[0].fields
 ---
 
 <MainLayout title="Home - Boules Consulting">
   <main class="overflow-x-hidden">
-    <Hero />
+    <Hero banner={homeFields.homeBanner} />
     <pre>
         {JSON.stringify(homePage.items[0], null, 2)}
     </pre>

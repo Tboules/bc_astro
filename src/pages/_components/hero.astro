@@ -1,6 +1,14 @@
 ---
+import type {Entry} from 'contentful'
+import type { TypeBannerSkeleton } from "@/types/contentful";
 import HeroTriangle from "../../assets/shapes/hero_triangle.svg";
 import { Image } from "astro:assets";
+
+interface Props {
+  banner: Entry<TypeBannerSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string> | undefined;
+}
+
+const {banner} = Astro.props
 ---
 
 <div class="w-screen relative">
@@ -9,4 +17,5 @@ import { Image } from "astro:assets";
     class="-z-10 max-w-[120rem] absolute top-0 left-1/2 w-full m-auto -translate-x-[50.5%]"
     src={HeroTriangle}
   />
+  <Image alt="Home Hero Image" width={1600} height={900} class='w-1/2 rounded shadow absolute right-12 top-24' src={banner?.fields.backgroundImage?.fields.file?.url ?? ''} />
 </div>
