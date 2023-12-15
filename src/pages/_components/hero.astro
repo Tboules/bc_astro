@@ -13,19 +13,46 @@ interface Props {
 const { banner } = Astro.props;
 ---
 
-<div class="w-screen relative bg-red-100 w-screen">
+<div class="w-full relative">
   <Image
     alt="background triangle on hero"
-    class="-z-10 max-w-[120rem] absolute top-0 left-1/2 w-full m-auto -translate-x-[50.5%]"
+    class="-z-10 max-w-[120rem] absolute top-0 left-1/2 w-screen m-auto min-w-[550px] md:translate-y-0 -translate-x-1/2"
     src={HeroTriangle}
   />
-  <!-- <Image -->
-  <!--   alt="Home Hero Image" -->
-  <!--   width={1600} -->
-  <!--   height={900} -->
-  <!--   class="w-1/2 rounded shadow absolute right-12 top-24" -->
-  <!--   src={banner?.fields.backgroundImage?.fields.file?.url ?? ""} -->
-  <!-- /> -->
 
-  <div class="w-1/2 max-w-5xl h-[300px] lg:h-[500px] xl:h-[600px] bg-slate-300 rounded absolute top-24 right-1/2 translate-x-[74%]">
+  <div
+    class="h-min w-full max-w-screen-2xl sm:p-8 md:p-16 m-auto flex flex-col md:flex-row rounded justify-end"
+  >
+    <div
+      class="w-full lg:w-3/4 max-w-5xl lg:h-[500px] xl:h-[600px] bg-slate-300 sm:rounded shadow-lg relative"
+    >
+      <Image
+        alt="Home Hero Image"
+        width={1600}
+        height={900}
+        class="w-full h-full object-cover sm:rounded"
+        src={banner?.fields.backgroundImage?.fields.file?.url ?? ""}
+      />
+      <div
+        class="absolute lg:relative lg:top-0 lg:left-0 lg:-translate-x-0 lg:-translate-y-0 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
+      >
+        <h1
+          class="font-medium text-xl sm:text-3xl text-center lg:text-4xl xl:text-6xl lg:absolute lg:top-[calc(10vw-30rem)] xl:top-[calc(10vw-33rem)] lg:-left-[14rem] xl:-left-[24rem] w-0"
+        >
+          Boules Consulting
+        </h1>
+        <h4
+          class="text-center italic font-light pt-2 sm:text-lg lg:absolute lg:text-2xl lg:w-56 lg:text-left lg:right-[36vw] lg:top-4"
+        >
+          {banner?.fields.subHeader}
+        </h4>
+      </div>
+
+      <div
+        class="absolute w-full h-full top-0 left-0 bg-secondary/75 lg:bg-secondary/20 shadow-inner z-10 sm:rounded"
+      >
+      </div>
+    </div>
+    <!-- <h1>{banner?.fields.heading}</h1> -->
+  </div>
 </div>
