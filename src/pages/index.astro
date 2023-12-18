@@ -4,7 +4,7 @@ import { contentfulClient } from "../lib/contentful";
 import type { TypeHomePageSkeleton } from "../types/contentful";
 import MainLayout from "@/components/layouts/main-layout.astro";
 import Hero from "./_components/hero.astro";
-import BelowHero from './_components/below_hero.astro'
+import BelowHero from "./_components/below_hero.astro";
 
 const homePage =
   await contentfulClient.withoutUnresolvableLinks.getEntries<TypeHomePageSkeleton>(

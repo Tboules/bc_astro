@@ -33,6 +33,12 @@
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
+    --bc-gradient: linear-gradient(
+      90deg,
+      #cfe2c3 4.93%,
+      #769da2 63.1%,
+      rgba(163, 157, 197, 0.9) 100%
+    );
   }
 
   .dark {

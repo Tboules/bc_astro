@@ -39,7 +39,7 @@ const { banner } = Astro.props;
         <h1
           class="font-medium text-xl sm:text-3xl text-center lg:text-4xl xl:text-5xl 2xl:text-6xl lg:absolute lg:top-[calc(10vw-30rem)] xl:top-[calc(10vw-33rem)] lg:-left-[14rem] xl:-left-[19rem] 2xl:-left-[24rem] md:w-0"
         >
-          Boules Consulting
+          {banner?.fields.heading}
         </h1>
         <h4
           class="text-center italic font-light pt-2 sm:text-lg lg:absolute lg:text-2xl lg:w-56 lg:text-left lg:right-[24vw] xl:right-[28vw] 2xl:right-[700px] lg:top-4"
@@ -49,7 +49,7 @@ const { banner } = Astro.props;
       </div>
 
       <div
-        class="absolute w-full h-full top-0 left-0 bg-secondary/75 lg:bg-secondary/20 shadow-inner z-10 sm:rounded"
+        class="absolute w-full h-full top-0 left-0 bg-secondary/75 lg:bg-secondary/10 shadow-inner z-10 sm:rounded"
       >
       </div>
     </div>

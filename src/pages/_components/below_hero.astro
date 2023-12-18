@@ -1,6 +1,7 @@
 ---
 import type { Entry } from "contentful";
 import type { TypeTextAndImageSkeleton } from "../../types/contentful";
+import { Image } from "astro:assets";
 
 interface Props {
   belowHero:
@@ -9,8 +10,32 @@ interface Props {
 }
 
 const { belowHero } = Astro.props;
+const dimensions = belowHero?.fields.image?.fields.file?.details.image;
 ---
 
-<div class='p-24'>
-  <h1>{belowHero?.fields.text}</h1>
+<div class="gradient max-w-5xl m-auto py-4 px-4 relative lg:min-h-[34rem]">
+  <div>
+    <div>
+      <h1>{belowHero?.fields.title}</h1>
+      <p>{belowHero?.fields.text}</p>
+    </div>
+    <Image
+      class="below_hero_mask lg:w-2/3 lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2"
+      width={dimensions?.width ?? 850}
+      height={dimensions?.height ?? 600}
+      src={belowHero?.fields.image?.fields.file?.url ?? ""}
+      alt={belowHero?.fields.image?.fields?.title ?? ""}
+    />
+  </div>
 </div>
+
+<style>
+  .below_hero_mask {
+    mask: url("../../assets/shapes/below_hero.svg");
+    mask-repeat: no-repeat;
+    mask-size: contain;
+  }
+  .gradient {
+    background: var(--bc-gradient);
+  }
+</style>
