@@ -1,0 +1,16 @@
+---
+import type { Entry } from "contentful";
+import type { TypeTextAndImageSkeleton } from "../../types/contentful";
+
+interface Props {
+  belowHero:
+    | Entry<TypeTextAndImageSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
+    | undefined;
+}
+
+const { belowHero } = Astro.props;
+---
+
+<div class='p-24'>
+  <h1>{belowHero?.fields.text}</h1>
+</div>
