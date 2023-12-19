@@ -13,19 +13,23 @@ const { belowHero } = Astro.props;
 const dimensions = belowHero?.fields.image?.fields.file?.details.image;
 ---
 
-<div class="gradient max-w-5xl m-auto py-4 px-4 relative lg:min-h-[34rem]">
-  <div>
-    <div>
-      <h1>{belowHero?.fields.title}</h1>
-      <p>{belowHero?.fields.text}</p>
-    </div>
-    <Image
-      class="below_hero_mask lg:w-2/3 lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2"
-      width={dimensions?.width ?? 850}
-      height={dimensions?.height ?? 600}
-      src={belowHero?.fields.image?.fields.file?.url ?? ""}
-      alt={belowHero?.fields.image?.fields?.title ?? ""}
-    />
+<div
+  class="max-w-5xl m-auto py-4 px-4 relative lg:min-h-[38rem] flex justify-end items-center"
+>
+  <div class="w-1/2">
+    <h1 class="text-4xl font-medium pb-4">{belowHero?.fields.title}</h1>
+    <p class="text-lg font-light">{belowHero?.fields.text}</p>
+  </div>
+  <Image
+    class="below_hero_mask lg:w-2/3 lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2 -z-10"
+    width={dimensions?.width ?? 850}
+    height={dimensions?.height ?? 600}
+    src={belowHero?.fields.image?.fields.file?.url ?? ""}
+    alt={belowHero?.fields.image?.fields?.title ?? ""}
+  />
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-20 w-96 h-60 gradient spin rounded-[900px] opacity-40 blur-2xl"
+  >
   </div>
 </div>
 
@@ -37,5 +41,26 @@ const dimensions = belowHero?.fields.image?.fields.file?.details.image;
   }
   .gradient {
     background: var(--bc-gradient);
+  }
+  .spin {
+    animation: spin 17s linear infinite;
+  }
+
+  @keyframes spin {
+    20%{
+      transform: translate(-65%, -40%) rotate(72deg);
+    }
+    40%{
+      transform: translate(-70%, -27%) rotate(144deg);
+    }
+    60%{
+      transform: translate(-70%, -35%) rotate(216deg);
+    }
+    80%{
+      transform: translate(-60%, -43%) rotate(288deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
   }
 </style>
