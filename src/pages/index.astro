@@ -5,6 +5,7 @@ import type { TypeHomePageSkeleton } from "../types/contentful";
 import MainLayout from "@/components/layouts/main-layout.astro";
 import Hero from "./_components/hero.astro";
 import BelowHero from "./_components/below_hero.astro";
+import RFPCallToAction from "./_components/rfp_call_to_action/index.astro";
 
 const homePage =
   await contentfulClient.withoutUnresolvableLinks.getEntries<TypeHomePageSkeleton>(
@@ -20,6 +21,7 @@ const homeFields = homePage.items[0].fields;
   <main class="overflow-x-hidden">
     <Hero banner={homeFields.homeBanner} />
     <BelowHero belowHero={homeFields.belowHero} />
+    <RFPCallToAction />
     <pre>
         {JSON.stringify(homePage.items[0], null, 2)}
     </pre>
