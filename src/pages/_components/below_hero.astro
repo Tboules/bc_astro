@@ -14,14 +14,16 @@ const dimensions = belowHero?.fields.image?.fields.file?.details.image;
 ---
 
 <div
-  class="max-w-5xl m-auto py-4 px-4 relative lg:min-h-[38rem] flex justify-end items-center"
+  class="max-w-5xl m-auto py-4 px-4 relative min-h-[24rem] lg:min-h-[38rem] flex justify-end items-center"
 >
-  <div class="w-1/2">
-    <h1 class="text-4xl font-medium pb-4">{belowHero?.fields.title}</h1>
-    <p class="text-lg font-light">{belowHero?.fields.text}</p>
+  <div class="w-2/3 md:w-1/2">
+    <h1 class="text-2xl md:text-4xl font-medium pb-4">
+      {belowHero?.fields.title}
+    </h1>
+    <p class="md:text-lg font-light">{belowHero?.fields.text}</p>
   </div>
   <Image
-    class="below_hero_mask lg:w-2/3 lg:absolute lg:left-0 lg:top-1/2 lg:-translate-y-1/2 -z-10"
+    class="below_hero_mask sm:w-3/4 md:w-2/3 absolute -left-20 sm:-left-24 md:left-4 top-1/2 -translate-y-1/2 -z-10"
     width={dimensions?.width ?? 850}
     height={dimensions?.height ?? 600}
     src={belowHero?.fields.image?.fields.file?.url ?? ""}
@@ -47,16 +49,16 @@ const dimensions = belowHero?.fields.image?.fields.file?.details.image;
   }
 
   @keyframes spin {
-    20%{
+    20% {
       transform: translate(-65%, -40%) rotate(72deg);
     }
-    40%{
+    40% {
       transform: translate(-70%, -27%) rotate(144deg);
     }
-    60%{
+    60% {
       transform: translate(-70%, -35%) rotate(216deg);
     }
-    80%{
+    80% {
       transform: translate(-60%, -43%) rotate(288deg);
     }
     100% {
