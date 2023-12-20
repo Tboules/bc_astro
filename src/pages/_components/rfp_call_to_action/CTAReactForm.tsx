@@ -1,42 +1,59 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 
-type FormData = {
-  email: string;
-};
+const formSchema = z.object({
+  email: z.string().email(),
+});
 
 export default function CTAReactForm() {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<FormData>({
-    resolver: zodResolver(
-      z.object({
-        email: z.string().email(),
-      }),
-    ),
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: "",
+    },
   });
 
-  const onSubmit = handleSubmit((d) => {
+  const onSubmit = (d: z.infer<typeof formSchema>) => {
     console.log(d);
-    reset();
-  });
+    form.reset();
+  };
 
   return (
-    <form
-      onSubmit={onSubmit}
-      className="flex flex-col md:flex-row gap-2 pt-2 md:pt-6 md:gap-4 "
-    >
-      <div className="w-full">
-        <Input {...register("email")} placeholder="email" type="text" />
-        <p className="text-red-400 py-2">{errors.email?.message}</p>
-      </div>
-      <Button type="submit">Get Your Template</Button>
-    </form>
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col md:flex-row gap-2 pt-6 md:pt-2 md:gap-4 md:items-end "
+      >
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem className="w-full">
+              <FormLabel>Email:</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="enter your email for a free template"
+                  type="text"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">Get Your Template</Button>
+      </form>
+    </Form>
   );
 }
