@@ -13,7 +13,7 @@ interface Props {
 const { banner } = Astro.props;
 ---
 
-<div class="w-full relative">
+<section class="w-full relative overflow-x-clip">
   <Image
     alt="background triangle on hero"
     class="-z-10 max-w-screen-2xl absolute top-0 left-1/2 w-screen m-auto min-w-[550px] md:translate-y-0 lg:-translate-y-4 -translate-x-1/2"
@@ -54,4 +54,4 @@ const { banner } = Astro.props;
       </div>
     </div>
   </div>
-</div>
+</section>
