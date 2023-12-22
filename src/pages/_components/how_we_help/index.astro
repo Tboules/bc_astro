@@ -1,11 +1,13 @@
 ---
 import PrepareIcon from "@/assets/icons/prepare.svg";
+import PlanIcon from '@/assets/icons/plan.svg';
+import PropelIcon from '@/assets/icons/propel.svg';
 import ArrowImage from "@/assets/shapes/arrow_ppp.svg";
 import { Image } from "astro:assets";
 import HowWeHelpCard from "./how_we_help_card.astro";
 ---
 
-<section class="max-w-screen-lg py-10 md:py-24 px-4 m-auto">
+<section class="max-w-screen-lg py-10 md:py-28 px-4 m-auto">
   <div class="md:flex justify-between">
     <h1
       class="text-xl md:text-4xl text-lin font-medium md:whitespace-nowrap mr-16 leading-loose"
@@ -26,14 +28,14 @@ import HowWeHelpCard from "./how_we_help_card.astro";
       />
       <div class="text-white flex flex-col gap-4">
         <HowWeHelpCard
-          icon={PrepareIcon}
+          icon={PropelIcon}
           positionStyles="bg-[#517B80] bottom-[14rem] left-40 md:w-[calc(100%-10rem)]"
           title="3. Propel"
           body="Launch and manage your impace-based projects"
           lineWidth="w-5/6"
         />
         <HowWeHelpCard
-          icon={PrepareIcon}
+          icon={PlanIcon}
           positionStyles="bg-primary bottom-[7rem] left-24 md:w-[calc(100%-6rem)]"
           title="2. Plan"
           body="Build scalable infrastructure to grow as you grow"
