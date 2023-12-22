@@ -1,29 +1,55 @@
 ---
-import ArrowImage from '../../assets/shapes/arrow_ppp.svg'
-import {Image} from 'astro:assets'
-
+import PrepareIcon from '../../assets/icons/prepare.svg'
+import ArrowImage from "../../assets/shapes/arrow_ppp.svg";
+import { Image } from "astro:assets";
 ---
 
 <section class="max-w-screen-lg py-10 md:py-24 px-4 m-auto">
   <div class="md:flex justify-between">
-    <h1 class="text-xl md:text-4xl text-lin font-medium md:whitespace-nowrap mr-16 leading-loose">How We Help</h1>
-    <p class='text-sm md:text-[1rem]'>
+    <h1
+      class="text-xl md:text-4xl text-lin font-medium md:whitespace-nowrap mr-16 leading-loose"
+    >
+      How We Help
+    </h1>
+    <p class="text-sm md:text-[1rem]">
       Our practice of  Prepare, Plan, Propel(™) guides agencies beyond mere
       competition for funding to yield truly sustainable and scalable impact.
     </p>
   </div>
-  <div class='gap-4 py-8 w-[90%] m-auto bg-red-200 relative'>
-    <Image alt='Arrow SVG' src={ArrowImage} />
-    <div class='polygon px-16 flex items-center h-24 bg-blue-200 absolute bottom-8 left-8 w-[calc(100%-2rem)]'>
-      <p>hello</p>
+  <div class="py-20 md:py-12 w-full">
+    <div class="gap-4 md:w-[90%] m-auto relative">
+      <Image alt="Arrow SVG" src={ArrowImage} class='md:static absolute -z-10 -top-12 md:top-0 right-12 md:right-0' />
+      <div class="text-white flex flex-col gap-4">
+        <div
+          class="bg-[#517B80] rounded polygon pl-16 pr-4 flex items-center h-[100px] md:absolute bottom-[14rem] left-40 md:w-[calc(100%-10rem)]"
+        >
+          <p>Arrows</p>
+        </div>
+        <div
+          class="bg-primary rounded polygon pl-16 pr-4 flex items-center h-[100px] md:absolute bottom-[7rem] left-24 md:w-[calc(100%-6rem)]"
+        >
+          <p>world</p>
+        </div>
+        <div
+          class="bg-[#93B9BE] rounded polygon p-4 md:pl-16 md:pr-4 flex flex-col md:flex-row md:items-center md:h-[100px] md:absolute bottom-0 left-8 md:w-[calc(100%-2rem)] gap-4"
+        >
+          <div class='flex items-center'>
+            <Image alt='prepare icon' src={PrepareIcon} class='w-16' />
+            <h3 class='md:text-3xl font-medium text-nowrap'>1. Prepare</h3>
+          </div>
+          <div class='w-2/3 h-[2px] md:w-[2px] md:h-2/3 bg-white md:ml-12' />
+          <p>Strategically build a solid foundation for your impact idea</p>
+        </div>
+      </div>
     </div>
-    <div class='polygon px-16 flex items-center h-24 bg-blue-200 absolute bottom-36 left-24 w-[calc(100%-6rem)]'>
-      <p>world</p>
-    </div>
+  </div>
 </section>
 
 <style>
-  .polygon {
-    clip-path: polygon(100% 0%, 100% 100%, 0 100%, 3.6rem 0) 
+
+  @media (min-width: 768px) {
+    .polygon {
+      clip-path: polygon(100% 0%, 100% 100%, 0 100%, 3.6rem 0);
+    }
   }
 </style>
