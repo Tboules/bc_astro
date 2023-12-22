@@ -1,0 +1,60 @@
+---
+import PrepareIcon from "@/assets/icons/prepare.svg";
+import ArrowImage from "@/assets/shapes/arrow_ppp.svg";
+import { Image } from "astro:assets";
+import HowWeHelpCard from "./how_we_help_card.astro";
+---
+
+<section class="max-w-screen-lg py-10 md:py-24 px-4 m-auto">
+  <div class="md:flex justify-between">
+    <h1
+      class="text-xl md:text-4xl text-lin font-medium md:whitespace-nowrap mr-16 leading-loose"
+    >
+      How We Help
+    </h1>
+    <p class="text-sm md:text-[1rem]">
+      Our practice of  Prepare, Plan, Propel(™) guides agencies beyond mere
+      competition for funding to yield truly sustainable and scalable impact.
+    </p>
+  </div>
+  <div class="py-4 md:py-12 w-full">
+    <div class="gap-4 m-auto relative">
+      <Image
+        alt="Arrow SVG"
+        src={ArrowImage}
+        class="md:static absolute -z-10 top-12 right-6 md:right-0"
+      />
+      <div class="text-white flex flex-col gap-4">
+        <HowWeHelpCard
+          icon={PrepareIcon}
+          positionStyles="bg-[#517B80] bottom-[14rem] left-40 md:w-[calc(100%-10rem)]"
+          title="3. Propel"
+          body="Launch and manage your impace-based projects"
+          lineWidth="w-5/6"
+        />
+        <HowWeHelpCard
+          icon={PrepareIcon}
+          positionStyles="bg-primary bottom-[7rem] left-24 md:w-[calc(100%-6rem)]"
+          title="2. Plan"
+          body="Build scalable infrastructure to grow as you grow"
+          lineWidth="w-2/3"
+        />
+        <HowWeHelpCard
+          icon={PrepareIcon}
+          positionStyles="bg-[#93B9BE] bottom-0 left-8 md:w-[calc(100%-2rem)]"
+          title="1. Prepare"
+          body="Strategically build a solid foundation for your impact idea"
+          lineWidth="w-1/2"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 768px) {
+    .polygon {
+      clip-path: polygon(100% 0%, 100% 100%, 0 100%, 3.6rem 0);
+    }
+  }
+</style>

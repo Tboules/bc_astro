@@ -1,0 +1,38 @@
+---
+import { cn } from "@/lib/utils";
+import { Image } from "astro:assets";
+
+interface Props {
+  icon: ImageMetadata;
+  positionStyles: string;
+  title: string;
+  body: string;
+  lineWidth: string;
+}
+
+const { icon, positionStyles, title, body, lineWidth } = Astro.props;
+---
+
+<div
+  class={cn(
+    positionStyles,
+    "rounded polygon shadow p-4 md:pl-14 md:pr-2 flex flex-col gap-4 md:flex-row md:items-center md:h-[100px] md:absolute",
+  )}
+>
+  <div class="flex items-center gap-2 md:flex-[10]">
+    <Image alt="prepare icon" src={icon} class="w-16" />
+    <h3 class="md:text-3xl font-medium text-nowrap">{title}</h3>
+  </div>
+  <div class={cn(lineWidth, "h-[2px] md:w-[2px] md:h-2/3 bg-white")}></div>
+  <p class="md:flex-[12] lg:flex-[18]">{body}</p>
+</div>
+
+<style>
+  @media (min-width: 768px) {
+    .polygon {
+      clip-path: path(
+        "M53.8465 2.00611C54.5601 0.765064 55.8825 0 57.3141 0H979C981.209 0 983 1.79086 983 4V96C983 98.2091 981.209 100 979 100H4.41409C1.33803 100 -0.586846 96.6728 0.946483 94.0061L53.8465 2.00611Z"
+      );
+    }
+  }
+</style>
