@@ -29,6 +29,16 @@ export type INavItem = {
   sub?: ISubNavItem[];
 };
 
+export const NAV_MAP = {
+  home: "/",
+  services: "/services",
+  aboutUs: "/about-us",
+  resources: "/resources",
+  contact: "/contact",
+  socialEnterprises: "/services/social-enterprises",
+  governmentAgencies: "/services/government-agencies",
+};
+
 export const NAV_SCHEMA: INavItem[] = [
   {
     path: "/",
