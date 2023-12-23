@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import SocialEnterprisesImage from "@/assets/images/social_enterprises.jpg";
 import { Button } from "@/components/ui/button";
 import { NAV_MAP } from "@/lib/nav_schema";
-import GovernmentAgenciesImage from '@/assets/images/government_agencies.jpg'
+import GovernmentAgenciesImage from "@/assets/images/government_agencies.jpg";
 ---
 
 <section>
@@ -18,11 +18,11 @@ import GovernmentAgenciesImage from '@/assets/images/government_agencies.jpg'
             src={SocialEnterprisesImage}
           />
         </div>
-        <div class='-translate-y-2'>
-          <h1 class='text-3xl font-medium'>Social Enterprises</h1>
-          <p class='py-4'>
-            We’ll help you build your business infrastructure, get funding ready,
-            and win government grants and contracts
+        <div class="-translate-y-2">
+          <h1 class="text-3xl font-medium">Social Enterprises</h1>
+          <p class="py-4">
+            We’ll help you build your business infrastructure, get funding
+            ready, and win government grants and contracts
           </p>
           <a href={NAV_MAP.socialEnterprises}>
             <Button>Learn More</Button>
@@ -31,14 +31,14 @@ import GovernmentAgenciesImage from '@/assets/images/government_agencies.jpg'
       </div>
 
       <div class="card bg-primary text-primary-foreground">
-        <div class='-translate-y-2'>
-          <h1 class='text-3xl font-medium'>Social Enterprises</h1>
-          <p class='py-4'>
-            We’ll help you build your business infrastructure, get funding ready,
-            and win government grants and contracts
+        <div>
+          <h1 class="text-3xl font-medium">Government Agencies</h1>
+          <p class="py-4">
+            We work with government agencies to complete their strategic plans,
+            position themselves for funding, and win grants
           </p>
           <a href={NAV_MAP.governmentAgencies}>
-            <Button variant='outline'>Learn More</Button>
+            <Button variant="outline">Learn More</Button>
           </a>
         </div>
         <div class="ga_image_wrap translate-x-8 translate-y-12">
@@ -75,7 +75,7 @@ import GovernmentAgenciesImage from '@/assets/images/government_agencies.jpg'
     background-image: url("../../../assets/shapes/card_right_poly.svg");
     background-size: contain;
     background-repeat: no-repeat;
-    filter: drop-shadow(-24px -24px 40px rgba(241, 245, 249, 0.40));
+    filter: drop-shadow(-24px -24px 40px rgba(241, 245, 249, 0.4));
   }
 
   .ga_mask {
