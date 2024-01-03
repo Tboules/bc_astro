@@ -52,10 +52,18 @@ const { images } = Astro.props;
       },
       1024: {
         perView: 2,
+        peek: {
+          before: 50,
+          after: 50,
+        },
       },
       460: {
         perView: 1,
-      }
+        peek: {
+          before: 20,
+          after: 100,
+        },
+      },
     },
   }).mount();
 </script>
