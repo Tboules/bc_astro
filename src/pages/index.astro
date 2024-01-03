@@ -8,6 +8,7 @@ import BelowHero from "./_components/below_hero.astro";
 import RFPCallToAction from "./_components/rfp_call_to_action/index.astro";
 import HowWeHelp from "./_components/how_we_help/index.astro";
 import WhoWeHelp from "./_components/who_we_help/index.astro";
+import OurCustomers from "./_components/our_customers/index.astro";
 
 const homePage =
   await contentfulClient.withoutUnresolvableLinks.getEntries<TypeHomePageSkeleton>(
@@ -25,6 +26,7 @@ const homeFields = homePage.items[0].fields;
     <RFPCallToAction />
     <HowWeHelp />
     <WhoWeHelp />
+    <OurCustomers images={homeFields.carouselImages?.fields.images} />
     <pre
       class="overflow-x-clip">
         {JSON.stringify(homePage.items[0], null, 2)}

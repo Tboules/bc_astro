@@ -1,0 +1,61 @@
+---
+import { Image } from "astro:assets";
+import type { Asset } from "contentful";
+
+interface Props {
+  images:
+    | (Asset<"WITHOUT_UNRESOLVABLE_LINKS", string> | undefined)[]
+    | undefined;
+}
+
+const { images } = Astro.props;
+---
+
+<div class="m-auto py-8 lg:py-32">
+  <div class="glide">
+    <div class="glide__track" data-glide-el="track">
+      <ul class="glide__slides">
+        {
+          images?.map((image) => {
+            if (!image) return;
+            return (
+              <li class="glide__slide h-64 flex">
+                <Image
+                  alt={image.fields?.title ?? ""}
+                  src={image.fields?.file?.url ?? ""}
+                  height={400}
+                  width={400}
+                  class="object-contain"
+                />
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  import Glide from "@glidejs/glide";
+
+  new Glide(".glide", {
+    type: "carousel",
+    perView: 4,
+    gap: 60,
+    autoplay: 1,
+    animationDuration: 5000,
+    animationTimingFunc: "linear",
+    breakpoints: {
+      1650: {
+        perView: 3,
+      },
+      1024: {
+        perView: 2,
+      },
+      460: {
+        perView: 1,
+      }
+    },
+  }).mount();
+</script>

@@ -17,6 +17,9 @@ dependencies:
   "@contentful/rich-text-html-renderer":
     specifier: ^16.3.0
     version: 16.3.0
+  "@glidejs/glide":
+    specifier: ^3.6.0
+    version: 3.6.0
   "@hookform/resolvers":
     specifier: ^3.3.2
     version: 3.3.2(react-hook-form@7.49.2)
@@ -85,6 +88,12 @@ dependencies:
     version: 3.22.4
 
 devDependencies:
+  "@types/glidejs":
+    specifier: ^1.0.34
+    version: 1.0.34
+  "@types/glidejs__glide":
+    specifier: ^3.6.5
+    version: 3.6.5
   prettier:
     specifier: ^3.1.0
     version: 3.1.1
@@ -1220,6 +1229,13 @@ packages:
     dev: false
     optional: true
 
+  /@glidejs/glide@3.6.0:
+    resolution:
+      {
+        integrity: sha512-47Aa+JmYjY4xTFpTtYCwrqirmI1arnp1UZETwtWpbTPisXUAuxrdJxKJLH8KHFWMsSrLi9+AcfyfzDIuO75rEA==,
+      }
+    dev: false
+
   /@hookform/resolvers@3.3.2(react-hook-form@7.49.2):
     resolution:
       {
@@ -2331,6 +2347,20 @@ packages:
         integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==,
       }
     dev: false
+
+  /@types/glidejs@1.0.34:
+    resolution:
+      {
+        integrity: sha512-0puy2Gk82xbuyGU/a0Ycjt+BGQLcq9+9gKzyY9HxCbiZo2pnvWm9eE5z/1iWaHTYqfdMY9fwMph0s+N5ha7nww==,
+      }
+    dev: true
+
+  /@types/glidejs__glide@3.6.5:
+    resolution:
+      {
+        integrity: sha512-OUjzveIu+tiK5VvyPh6jTBJ/vH6+vC+XWzC2KJzpgUW8uancMJBa7R+BlXuvtSPdLw/pQForVasy0fm1D7JWOQ==,
+      }
+    dev: true
 
   /@types/hast@2.3.8:
     resolution:
