@@ -7,5 +7,11 @@ export async function GET() {
       number,
       message: `Here's a random number: ${number}`,
     }),
+    {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
   );
 }
