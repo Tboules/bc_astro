@@ -1,17 +1,18 @@
 ---
 import { NAV_MAP } from "@/lib/nav_schema";
 import MailchimpForm from "./MailChimpForm";
+import ContactUsForm from "./ContactUsForm";
 import { Separator } from "@/components/ui/separator";
-import { Mail, Linkedin, Instagram, Facebook } from "lucide-react";
+import { Phone, Mail, Linkedin, Instagram, Facebook } from "lucide-react";
 import BoulesConsultingLogoWhite from "@/assets/logos/Boules-Consulting-Logo-White.svg";
 import { Image } from "astro:assets";
 ---
 
 <div>
   <!-- Contact Form -->
-  <section class="p-4 w-full max-w-screen-lg m-auto mb-24">
+  <section id="contact-form" class="p-4 w-full max-w-screen-lg m-auto mb-24">
     <div
-      class="flex flex-col gap-4 md:flex-row border border-border bg-white shadow rounded p-4"
+      class="flex flex-col gap-4 md:flex-row border border-border bg-white shadow rounded p-4 md:py-12 md:px-8"
     >
       <div class="flex-1">
         <h4 class="font-light text-lg">REACH OUT TO US</h4>
@@ -22,8 +23,30 @@ import { Image } from "astro:assets";
           and how we can help you, and a member of our team will reach out to
           you shortly to see how we can help you achieve your goals!
         </p>
+        <a
+          class="flex items-center gap-2 hover:underline pt-8 group transition-all"
+          href="mailto: info@boulesconsulting.org"
+        >
+          <Mail
+            size={32}
+            className="bg-secondary text-primary p-1 rounded group-hover:bg-primary group-hover:text-white"
+          />
+           info@boulesconsulting.org
+        </a>
+        <a
+          class="flex items-center gap-2 hover:underline pt-4 group transition-all"
+          href="tel:+18185992692"
+        >
+          <Phone
+            size={32}
+            className="bg-secondary text-primary p-1 rounded group-hover:bg-primary group-hover:text-white"
+          />
+           +1 (818)-599-2692
+        </a>
       </div>
-      <div class="flex-1 h-24 w-full bg-red-400"></div>
+      <div class="flex-1">
+        <ContactUsForm client:load />
+      </div>
     </div>
   </section>
 
