@@ -1,0 +1,93 @@
+---
+import { NAV_MAP } from "@/lib/nav_schema";
+import MailchimpForm from "./MailChimpForm";
+import { Separator } from "@/components/ui/separator";
+import { Mail, Linkedin, Instagram, Facebook } from "lucide-react";
+import BoulesConsultingLogoWhite from '@/assets/logos/Boules-Consulting-Logo-White.svg'
+import {Image} from 'astro:assets';
+---
+
+<div class="bg-red-200">
+  <section></section>
+  <footer class="bg-primary p-8 text-primary-foreground">
+    <div
+      class="max-w-screen-xl m-auto grid md:grid-cols-2 grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-4"
+    >
+      <!-- mailchimp section  -->
+      <div>
+        <h2 class="text-2xl text-center">Subscribe Today!</h2>
+        <Separator className="mt-2 w-4/5 mx-auto" />
+
+        <MailchimpForm client:load />
+      </div>
+
+      <!-- useful links section -->
+      <div>
+        <h2 class="text-2xl text-center">Useful Links</h2>
+        <Separator className="mt-2 w-4/5 mx-auto" />
+
+        <nav>
+          <ul class="p-4 text-center flex flex-col gap-4">
+            <li>
+              <a class="hover:underline" href={NAV_MAP.governmentAgencies}>
+                Government Agencies
+              </a>
+            </li>
+            <li>
+              <a class="hover:underline" href={NAV_MAP.socialEnterprises}>
+                Social Enterprises
+              </a>
+            </li>
+            <li>
+              <a href={NAV_MAP.governmentAgencies} class="hover:underline">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href={NAV_MAP.governmentAgencies} class="hover:underline">
+                Resources
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- contact section -->
+      <div>
+        <h2 class="text-2xl text-center">Get In Touch</h2>
+        <Separator className="mt-2 w-4/5 mx-auto" />
+
+        <div>
+          <a
+            class="flex gap-2 hover:underline justify-center py-10"
+            href="mailto: info@boulesconsulting.org"
+          >
+            <Mail />
+             info@boulesconsulting.org
+          </a>
+
+          <div class="flex gap-4 justify-center items-center">
+            <a href="#">
+              <Facebook size={40}/>
+            </a>
+            <a href="#">
+              <Linkedin size={40}/>
+            </a>
+            <a href="#">
+              <Instagram size={40}/>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- logo -->
+      <div class="flex justify-center items-center">
+        <Image src={BoulesConsultingLogoWhite} alt='White Boules Consulting Logo' />
+      </div>
+    </div>
+    <div class="w-full text-center">
+      <div class="w-full bg-border h-[1px] mt-8 mb-2"></div>
+      <h5 class="font-extralight">Boules Consulting © 2024</h5>
+    </div>
+  </footer>
+</div>
