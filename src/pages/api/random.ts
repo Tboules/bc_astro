@@ -1,17 +1,9 @@
 export const prerender = false;
 
-export async function GET() {
-  let number = Math.random();
+export const GET: APIRoute = ({ params, request }) => {
   return new Response(
     JSON.stringify({
-      number,
-      message: `Here's a random number: ${number}`,
+      message: "This was a GET!",
     }),
-    {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    },
   );
-}
+};
