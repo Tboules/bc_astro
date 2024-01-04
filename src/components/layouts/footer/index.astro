@@ -3,12 +3,31 @@ import { NAV_MAP } from "@/lib/nav_schema";
 import MailchimpForm from "./MailChimpForm";
 import { Separator } from "@/components/ui/separator";
 import { Mail, Linkedin, Instagram, Facebook } from "lucide-react";
-import BoulesConsultingLogoWhite from '@/assets/logos/Boules-Consulting-Logo-White.svg'
-import {Image} from 'astro:assets';
+import BoulesConsultingLogoWhite from "@/assets/logos/Boules-Consulting-Logo-White.svg";
+import { Image } from "astro:assets";
 ---
 
-<div class="bg-red-200">
-  <section></section>
+<div>
+  <!-- Contact Form -->
+  <section class="p-4 w-full max-w-screen-lg m-auto mb-24">
+    <div
+      class="flex flex-col gap-4 md:flex-row border border-border bg-white shadow rounded p-4"
+    >
+      <div class="flex-1">
+        <h4 class="font-light text-lg">REACH OUT TO US</h4>
+        <h2 class="font-medium text-2xl pt-8">We Help People Help People!</h2>
+        <div class="w-2/5 h-0.5 bg-primary my-4"></div>
+        <p class="font-light text-sm pr-4">
+          Are you ready to scale your impact? Tell us about your organization
+          and how we can help you, and a member of our team will reach out to
+          you shortly to see how we can help you achieve your goals!
+        </p>
+      </div>
+      <div class="flex-1 h-24 w-full bg-red-400"></div>
+    </div>
+  </section>
+
+  <!-- Bottom Footer -->
   <footer class="bg-primary p-8 text-primary-foreground">
     <div
       class="max-w-screen-xl m-auto grid md:grid-cols-2 grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-4"
@@ -68,13 +87,13 @@ import {Image} from 'astro:assets';
 
           <div class="flex gap-4 justify-center items-center">
             <a href="#">
-              <Facebook size={40}/>
+              <Facebook size={40} />
             </a>
             <a href="#">
-              <Linkedin size={40}/>
+              <Linkedin size={40} />
             </a>
             <a href="#">
-              <Instagram size={40}/>
+              <Instagram size={40} />
             </a>
           </div>
         </div>
@@ -82,7 +101,10 @@ import {Image} from 'astro:assets';
 
       <!-- logo -->
       <div class="flex justify-center items-center">
-        <Image src={BoulesConsultingLogoWhite} alt='White Boules Consulting Logo' />
+        <Image
+          src={BoulesConsultingLogoWhite}
+          alt="White Boules Consulting Logo"
+        />
       </div>
     </div>
     <div class="w-full text-center">
