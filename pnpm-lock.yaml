@@ -41,6 +41,9 @@ dependencies:
   '@radix-ui/react-slot':
     specifier: ^1.0.2
     version: 1.0.2(@types/react@18.2.46)(react@18.2.0)
+  '@sendgrid/mail':
+    specifier: ^8.1.0
+    version: 8.1.0
   '@types/react':
     specifier: ^18.2.46
     version: 18.2.46
@@ -1608,6 +1611,33 @@ packages:
     dev: false
     optional: true
 
+  /@sendgrid/client@8.1.0:
+    resolution: {integrity: sha512-Kp2kKLr307v/HnR3uGuySt0AbCkeG7naDVOzfPOtWvKHVZIEHmKidQjJjzytVZNYWtoRdYgNfBw6GyUznGqa6w==}
+    engines: {node: '>=12.*'}
+    dependencies:
+      '@sendgrid/helpers': 8.0.0
+      axios: 1.6.4
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@sendgrid/helpers@8.0.0:
+    resolution: {integrity: sha512-Ze7WuW2Xzy5GT5WRx+yEv89fsg/pgy3T1E3FS0QEx0/VvRmigMZ5qyVGhJz4SxomegDkzXv/i0aFPpHKN8qdAA==}
+    engines: {node: '>= 12.0.0'}
+    dependencies:
+      deepmerge: 4.3.1
+    dev: false
+
+  /@sendgrid/mail@8.1.0:
+    resolution: {integrity: sha512-WkE0qwOrJMX9oQ+Xvtl3CdmucD6/iKw6go0VPoPieVlfXc43rbIf91wvtO6m7sKPnzxw3G+8rekBgXibmP4S8Q==}
+    engines: {node: '>=12.*'}
+    dependencies:
+      '@sendgrid/client': 8.1.0
+      '@sendgrid/helpers': 8.0.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /@types/babel__core@7.20.5:
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
     dependencies:
@@ -2433,6 +2463,11 @@ packages:
     resolution: {integrity: sha512-O8x12RzrUF8xyVcY0KJowWsmaJxQbmy0/EtnNtHRpsOcT7dFk5W598coHqBVpmWo1oQQfsCqfCmkZN5DJrZVdg==}
     dependencies:
       character-entities: 2.0.2
+    dev: false
+
+  /deepmerge@4.3.1:
+    resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
+    engines: {node: '>=0.10.0'}
     dev: false
 
   /define-data-property@1.1.1:
