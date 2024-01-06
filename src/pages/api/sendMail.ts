@@ -1,3 +1,5 @@
+export const prerender = false;
+
 import mail from "@sendgrid/mail";
 import type { APIRoute } from "astro";
 
