@@ -43,7 +43,7 @@ in the services navigator.
 - [ ] Update Contentful data model to incorporate new changes
 - [ ] Build out each major page
 - [ ] Build out Blog page template and dynamic route logic
-- [ ] Set up server side endpoints for sending emails
+- [x] Set up server side endpoints for sending emails
 - [ ] Restore SEO deps like google and fb tag manager
 
 ## &nbsp;

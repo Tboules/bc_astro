@@ -1,5 +1,6 @@
 export const prerender = false;
 
+import { contactFormSchema, type IContactFormSchema } from "@/types/forms";
 import mail from "@sendgrid/mail";
 import type { APIRoute } from "astro";
 
@@ -9,18 +10,21 @@ export const POST: APIRoute = async ({ request }) => {
   if (request.headers.get("Content-Type") !== "application/json") {
     return new Response(null, { status: 400 });
   }
-  const requestBody = await request.json();
-
-  const { senderName, senderEmail, body } = requestBody;
-
-  const msg = {
-    to: "tboules@gmail.com",
-    from: "info@boulesconsulting.org",
-    subject: `Marketing Site email from ${senderName} / ${senderEmail}`,
-    html: body,
-  };
 
   try {
+    const requestBody: IContactFormSchema = await request.json();
+
+    contactFormSchema.parse(requestBody);
+
+    const { name, email, request: messageBody } = requestBody;
+
+    const msg = {
+      to: "info@boulesconsulting.org",
+      from: "info@boulesconsulting.org",
+      subject: `Marketing Site email from ${name} / ${email}`,
+      html: messageBody,
+    };
+
     await mail.send(msg);
 
     return new Response(JSON.stringify("Email Sent Successfully"), {

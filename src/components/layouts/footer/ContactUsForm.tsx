@@ -9,19 +9,15 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { contactFormSchema, type IContactFormSchema } from "@/types/forms";
 import { zodResolver } from "@hookform/resolvers/zod";
+import React from "react";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
-
-const contactFormSchema = z.object({
-  name: z.string().min(1),
-  email: z.string().email(),
-  request: z.string().min(1),
-});
-
-type IContactFormSchema = z.infer<typeof contactFormSchema>;
 
 export default function ContactUsForm() {
+  const [loading, setLoading] = React.useState(false);
+  const [sent, setSent] = React.useState(false);
+
   const form = useForm<IContactFormSchema>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
@@ -31,9 +27,27 @@ export default function ContactUsForm() {
     },
   });
 
-  const onSubmit = (d: IContactFormSchema) => {
-    console.log(d);
-    form.reset();
+  const onSubmit = async (d: IContactFormSchema) => {
+    try {
+      setLoading(true);
+
+      await fetch("/api/sendMail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(d),
+      });
+
+      setSent(true);
+    } catch (error) {
+      form.setError("root", {
+        message: "We were unable to send your email",
+      });
+    } finally {
+      form.reset();
+      setLoading(false);
+    }
   };
 
   return (
@@ -88,7 +102,9 @@ export default function ContactUsForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Send Message</Button>
+        <Button type="submit" disabled={sent || loading}>
+          Send Message
+        </Button>
       </form>
     </Form>
   );
