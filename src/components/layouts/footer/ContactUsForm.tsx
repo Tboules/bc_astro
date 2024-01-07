@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { contactFormSchema, type IContactFormSchema } from "@/types/forms";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
 import React from "react";
 import { useForm } from "react-hook-form";
 
@@ -103,6 +104,7 @@ export default function ContactUsForm() {
           )}
         />
         <Button type="submit" disabled={sent || loading}>
+          {loading && <Loader2 className="mr-2 animate-spin" />}
           Send Message
         </Button>
       </form>

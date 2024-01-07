@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Form,
@@ -11,21 +10,44 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
-const formSchema = z.object({
-  email: z.string().email(),
-});
+import {
+  callToActionFormSchema,
+  type ICallToActionFormSchema,
+} from "@/types/forms";
+import React from "react";
+import { Loader2 } from "lucide-react";
 
 export default function CTAReactForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const [loading, setLoading] = React.useState(false);
+  const [sent, setSent] = React.useState(false);
+
+  const form = useForm<ICallToActionFormSchema>({
+    resolver: zodResolver(callToActionFormSchema),
     defaultValues: {
       email: "",
     },
   });
 
-  const onSubmit = (d: z.infer<typeof formSchema>) => {
-    console.log(d);
+  const onSubmit = async (d: ICallToActionFormSchema) => {
+    setLoading(true);
+    try {
+      await fetch("/api/promo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(d),
+      });
+      setSent(true);
+    } catch (error) {
+      form.setError("root", {
+        message: "We were unable to send your document",
+      });
+    } finally {
+      setLoading(false);
+      form.reset();
+    }
+
     form.reset();
   };
 
@@ -52,7 +74,10 @@ export default function CTAReactForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Get Your Template</Button>
+        <Button disabled={sent || loading} type="submit">
+          {loading && <Loader2 className="mr-2 w-4 h-4 animate-spin" />}
+          Get Your Template
+        </Button>
       </form>
     </Form>
   );

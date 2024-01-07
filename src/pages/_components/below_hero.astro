@@ -30,7 +30,7 @@ const dimensions = belowHero?.fields.image?.fields.file?.details.image;
     alt={belowHero?.fields.image?.fields?.title ?? ""}
   />
   <div
-    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-20 w-96 h-60 gradient spin rounded-[900px] opacity-40 blur-2xl"
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-20 w-96 h-60 gradient spin-sprite rounded-[900px] opacity-40 blur-2xl"
   >
   </div>
 </section>
@@ -44,11 +44,11 @@ const dimensions = belowHero?.fields.image?.fields.file?.details.image;
   .gradient {
     background: var(--bc-gradient);
   }
-  .spin {
-    animation: spin 17s linear infinite;
+  .spin-sprite {
+    animation: spin-sprite 17s linear infinite;
   }
 
-  @keyframes spin {
+  @keyframes spin-sprite {
     20% {
       transform: translate(-65%, -40%) rotate(72deg);
     }

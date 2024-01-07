@@ -7,3 +7,9 @@ export const contactFormSchema = z.object({
 });
 
 export type IContactFormSchema = z.infer<typeof contactFormSchema>;
+
+export const callToActionFormSchema = z.object({
+  email: z.string().email(),
+});
+
+export type ICallToActionFormSchema = z.infer<typeof callToActionFormSchema>;
