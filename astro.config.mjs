@@ -16,5 +16,7 @@ export default defineConfig({
     }),
   ],
   output: "hybrid",
-  adapter: vercel(),
+  adapter: vercel({
+    includeFiles: ["./public/MNC.pdf"],
+  }),
 });
