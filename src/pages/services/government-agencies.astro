@@ -1,10 +1,18 @@
 ---
 import "@/styles/globals.css";
 import MainLayout from "@/components/layouts/main-layout.astro";
+import { contentfulClient } from "@/lib/contentful";
+import type { TypeServicesPageSkeleton } from "@/types/contentful";
+import ServicesLayout from "./_components/services_layout.astro";
+
+const gaPage =
+  await contentfulClient.withoutUnresolvableLinks.getEntry<TypeServicesPageSkeleton>(
+    "3XWQI9Fzmb1u2SiHgc9mtf",
+  );
 ---
 
 <MainLayout title="Government Agencies - Boules Consulting">
   <main>
-    <p>Services Page: GA</p>
+    <ServicesLayout data={gaPage} />
   </main>
 </MainLayout>

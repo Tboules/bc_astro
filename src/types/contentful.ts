@@ -25,15 +25,6 @@ export type TypeAboutUs<
   Locales extends LocaleCode,
 > = Entry<TypeAboutUsSkeleton, Modifiers, Locales>;
 
-export function isTypeAboutUs<
-  Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
->(
-  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
-): entry is TypeAboutUs<Modifiers, Locales> {
-  return entry.sys.contentType.sys.id === "aboutUs";
-}
-
 export interface TypeBannerFields {
   heading: EntryFieldTypes.Symbol;
   subHeader?: EntryFieldTypes.Symbol;
@@ -45,15 +36,6 @@ export type TypeBanner<
   Modifiers extends ChainModifiers,
   Locales extends LocaleCode,
 > = Entry<TypeBannerSkeleton, Modifiers, Locales>;
-
-export function isTypeBanner<
-  Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
->(
-  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
-): entry is TypeBanner<Modifiers, Locales> {
-  return entry.sys.contentType.sys.id === "banner";
-}
 
 export interface TypeBlogPostFields {
   slug: EntryFieldTypes.Symbol;
@@ -72,15 +54,6 @@ export type TypeBlogPost<
   Locales extends LocaleCode,
 > = Entry<TypeBlogPostSkeleton, Modifiers, Locales>;
 
-export function isTypeBlogPost<
-  Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
->(
-  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
-): entry is TypeBlogPost<Modifiers, Locales> {
-  return entry.sys.contentType.sys.id === "blogPost";
-}
-
 export interface TypeButtonFields {
   buttonText?: EntryFieldTypes.Symbol;
   buttonLink?: EntryFieldTypes.Symbol;
@@ -91,15 +64,6 @@ export type TypeButton<
   Modifiers extends ChainModifiers,
   Locales extends LocaleCode,
 > = Entry<TypeButtonSkeleton, Modifiers, Locales>;
-
-export function isTypeButton<
-  Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
->(
-  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
-): entry is TypeButton<Modifiers, Locales> {
-  return entry.sys.contentType.sys.id === "button";
-}
 
 export interface TypeCarouselImagesFields {
   images: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>;
@@ -113,15 +77,6 @@ export type TypeCarouselImages<
   Modifiers extends ChainModifiers,
   Locales extends LocaleCode,
 > = Entry<TypeCarouselImagesSkeleton, Modifiers, Locales>;
-
-export function isTypeCarouselImages<
-  Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
->(
-  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
-): entry is TypeCarouselImages<Modifiers, Locales> {
-  return entry.sys.contentType.sys.id === "carouselImages";
-}
 
 export interface TypeCommunityPageFields {
   slug?: EntryFieldTypes.Symbol;
@@ -146,15 +101,6 @@ export type TypeCommunityPage<
   Locales extends LocaleCode,
 > = Entry<TypeCommunityPageSkeleton, Modifiers, Locales>;
 
-export function isTypeCommunityPage<
-  Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
->(
-  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
-): entry is TypeCommunityPage<Modifiers, Locales> {
-  return entry.sys.contentType.sys.id === "communityPage";
-}
-
 export interface TypeContactFields {
   slug: EntryFieldTypes.Symbol;
   contactBanner?: EntryFieldTypes.EntryLink<TypeBannerSkeleton>;
@@ -168,15 +114,6 @@ export type TypeContact<
   Modifiers extends ChainModifiers,
   Locales extends LocaleCode,
 > = Entry<TypeContactSkeleton, Modifiers, Locales>;
-
-export function isTypeContact<
-  Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
->(
-  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
-): entry is TypeContact<Modifiers, Locales> {
-  return entry.sys.contentType.sys.id === "contact";
-}
 
 export interface TypeEmployeeCardFields {
   name: EntryFieldTypes.Symbol;
@@ -195,20 +132,12 @@ export type TypeEmployeeCard<
   Locales extends LocaleCode,
 > = Entry<TypeEmployeeCardSkeleton, Modifiers, Locales>;
 
-export function isTypeEmployeeCard<
-  Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
->(
-  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
-): entry is TypeEmployeeCard<Modifiers, Locales> {
-  return entry.sys.contentType.sys.id === "employeeCard";
-}
-
 export interface TypeGeneralCardFields {
   title: EntryFieldTypes.Symbol;
   description: EntryFieldTypes.Text;
   icon?: EntryFieldTypes.AssetLink;
   internalLink?: EntryFieldTypes.Symbol;
+  dynamicContent?: EntryFieldTypes.RichText;
 }
 
 export type TypeGeneralCardSkeleton = EntrySkeletonType<
@@ -219,15 +148,6 @@ export type TypeGeneralCard<
   Modifiers extends ChainModifiers,
   Locales extends LocaleCode,
 > = Entry<TypeGeneralCardSkeleton, Modifiers, Locales>;
-
-export function isTypeGeneralCard<
-  Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
->(
-  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
-): entry is TypeGeneralCard<Modifiers, Locales> {
-  return entry.sys.contentType.sys.id === "generalCard";
-}
 
 export interface TypeHomePageFields {
   slug: EntryFieldTypes.Symbol;
@@ -250,15 +170,6 @@ export type TypeHomePage<
   Locales extends LocaleCode,
 > = Entry<TypeHomePageSkeleton, Modifiers, Locales>;
 
-export function isTypeHomePage<
-  Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
->(
-  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
-): entry is TypeHomePage<Modifiers, Locales> {
-  return entry.sys.contentType.sys.id === "homePage";
-}
-
 export interface TypeImageCardsFields {
   title: EntryFieldTypes.Symbol;
   text: EntryFieldTypes.Text;
@@ -274,15 +185,6 @@ export type TypeImageCards<
   Modifiers extends ChainModifiers,
   Locales extends LocaleCode,
 > = Entry<TypeImageCardsSkeleton, Modifiers, Locales>;
-
-export function isTypeImageCards<
-  Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
->(
-  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
-): entry is TypeImageCards<Modifiers, Locales> {
-  return entry.sys.contentType.sys.id === "imageCards";
-}
 
 export interface TypeServicesPageFields {
   slug?: EntryFieldTypes.Symbol;
@@ -300,15 +202,6 @@ export type TypeServicesPage<
   Modifiers extends ChainModifiers,
   Locales extends LocaleCode,
 > = Entry<TypeServicesPageSkeleton, Modifiers, Locales>;
-
-export function isTypeServicesPage<
-  Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
->(
-  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
-): entry is TypeServicesPage<Modifiers, Locales> {
-  return entry.sys.contentType.sys.id === "servicesPage";
-}
 
 export interface TypeStackFields {
   text?: EntryFieldTypes.Text;
@@ -328,15 +221,6 @@ export type TypeStack<
   Locales extends LocaleCode,
 > = Entry<TypeStackSkeleton, Modifiers, Locales>;
 
-export function isTypeStack<
-  Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
->(
-  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
-): entry is TypeStack<Modifiers, Locales> {
-  return entry.sys.contentType.sys.id === "stack";
-}
-
 export interface TypeTestimonialSlideFields {
   name: EntryFieldTypes.Symbol;
   jobTitle: EntryFieldTypes.Symbol;
@@ -354,15 +238,6 @@ export type TypeTestimonialSlide<
   Locales extends LocaleCode,
 > = Entry<TypeTestimonialSlideSkeleton, Modifiers, Locales>;
 
-export function isTypeTestimonialSlide<
-  Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
->(
-  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
-): entry is TypeTestimonialSlide<Modifiers, Locales> {
-  return entry.sys.contentType.sys.id === "testimonialSlide";
-}
-
 export interface TypeTextAndImageFields {
   text: EntryFieldTypes.Text;
   image: EntryFieldTypes.AssetLink;
@@ -377,12 +252,3 @@ export type TypeTextAndImage<
   Modifiers extends ChainModifiers,
   Locales extends LocaleCode,
 > = Entry<TypeTextAndImageSkeleton, Modifiers, Locales>;
-
-export function isTypeTextAndImage<
-  Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
->(
-  entry: Entry<EntrySkeletonType, Modifiers, Locales>,
-): entry is TypeTextAndImage<Modifiers, Locales> {
-  return entry.sys.contentType.sys.id === "textAndImage";
-}

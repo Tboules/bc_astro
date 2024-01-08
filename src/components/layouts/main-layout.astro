@@ -36,7 +36,10 @@ const curPath = new URL(Astro.url).pathname;
   </head>
   <body>
     <MainHeader curPath={curPath} client:load>
-      <a href={NAV_MAP.home} class="flex items-center gap-2 hover:underline text-primary">
+      <a
+        href={NAV_MAP.home}
+        class="flex items-center gap-2 hover:underline text-primary"
+      >
         <Image src={LogoImage} class="h-12 w-12" alt="Boules Consulting Logo" />
         <h1 class="font-medium text-xl">Boules Consulting</h1>
       </a>
