@@ -3,6 +3,7 @@ import {
   findBasePath,
   type INavItem,
   NavIcon,
+  NAV_MAP,
 } from "@/lib/nav_schema";
 import Svgs from "../Svgs";
 import { Button } from "../ui/button";
@@ -105,7 +106,7 @@ export function MobileNav() {
         </SheetTrigger>
         <SheetContent className={"sm:max-w-md w-screen"}>
           <SheetHeader>
-            <a href={findBasePath("Home")}>
+            <a href={NAV_MAP.home}>
               <div className="flex items-center gap-2">
                 <Svgs
                   svgProps={{
@@ -146,13 +147,15 @@ export function MobileNavBaseCard({ item }: { item: INavItem }) {
           isBasePath(item.path) ? "border-primary" : "",
         )}
       >
-        <a
-          className="flex gap-2 items-center w-full h-full p-4"
-          href={item.path}
-        >
-          <NavIcon route={item} />
-          <p>{item.display}</p>
-        </a>
+        <SheetTrigger asChild>
+          <a
+            className="flex gap-2 items-center w-full h-full p-4"
+            href={item.path !== "/services" ? item.path : "#"}
+          >
+            <NavIcon route={item} />
+            <p>{item.display}</p>
+          </a>
+        </SheetTrigger>
       </li>
       {item.sub && (
         <ul className="flex flex-col pl-4 mt-2 gap-2">

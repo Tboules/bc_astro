@@ -4,6 +4,7 @@ import MainHeader from "./header";
 import LogoImage from "../../assets/logos/Boules-Consulting-Logo.svg";
 import BackgoundLogo from "../../assets/logos/Boules-Consulting-Logo-Big.svg";
 import { Image } from "astro:assets";
+import { NAV_MAP } from "@/lib/nav_schema";
 
 const { title } = Astro.props;
 const curPath = new URL(Astro.url).pathname;
@@ -35,10 +36,10 @@ const curPath = new URL(Astro.url).pathname;
   </head>
   <body>
     <MainHeader curPath={curPath} client:load>
-      <div class="flex items-center gap-2">
+      <a href={NAV_MAP.home} class="flex items-center gap-2 hover:underline text-primary">
         <Image src={LogoImage} class="h-12 w-12" alt="Boules Consulting Logo" />
-        <h1 class="font-medium text-xl text-primary">Boules Consulting</h1>
-      </div>
+        <h1 class="font-medium text-xl">Boules Consulting</h1>
+      </a>
     </MainHeader>
     <slot />
     <Image

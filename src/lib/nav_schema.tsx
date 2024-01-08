@@ -41,10 +41,6 @@ export const NAV_MAP = {
 
 export const NAV_SCHEMA: INavItem[] = [
   {
-    path: "/",
-    display: "Home",
-  },
-  {
     path: "/services",
     display: "Services",
     sub: [
@@ -67,7 +63,7 @@ export const NAV_SCHEMA: INavItem[] = [
     display: "Resources",
   },
   {
-    path: "/contact",
+    path: "#contact-form",
     display: "Contact",
   },
 ];
