@@ -1,18 +1,22 @@
 ---
 import type { Entry } from "contentful";
 import type { TypeServicesPageSkeleton } from "@/types/contentful";
+import ServiceArrow from "@/assets/shapes/service_arrow.svg";
+import ArrowsBackground from '../_components/ArrowsBackground'
 
 interface Props {
   data: Entry<TypeServicesPageSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>;
 }
 
 const { data } = Astro.props;
+console.log(ServiceArrow.height)
 ---
 
 <div>
-  <h1>{data.fields.servicesBanner?.fields.heading}</h1>
-  <pre
+  <ArrowsBackground client:only />
+  <pre 
     class="overflow-x-clip">
       {JSON.stringify(data.fields, null, 2)} 
   </pre>
 </div>
+
