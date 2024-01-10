@@ -11,7 +11,7 @@ export default function ArrowsBackground() {
         return (
           <SvgArrows
             key={v}
-            className={cn("absolute top-0 opacity-55")}
+            className={cn("absolute top-0 opacity-45")}
             style={{ left: v }}
           />
         );
