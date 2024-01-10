@@ -25,7 +25,7 @@ const banner = data.fields.servicesBanner;
       <h1 class="text-2xl md:text-5xl">Propel</h1>
     </div>
     <p
-      class="py-4 md:py-12 max-w-screen-md m-auto text-lg md:text-3xl font-light text-justify md:leading-relaxed"
+      class="py-4 md:py-12 max-w-screen-md m-auto text-lg md:text-2xl font-light text-justify md:leading-relaxed"
     >
       Using our Trademarked best practice of <span
         class="italic text-primary font-medium">Prepare, Plan, Propel(™)</span
@@ -37,17 +37,18 @@ const banner = data.fields.servicesBanner;
     </p>
   </section>
 
-  <section class="max-w-screen-lg flex m-auto bg-blue-200/50 p-8">
-    <div class="flex-1">
-      <h3>{banner?.fields.heading}</h3>
-      <p>{banner?.fields.subHeader}</p>
+  <section class="max-w-screen-lg flex md:flex-row flex-col gap-8 m-auto px-8 items-center">
+    <div class="flex-1 order-2 md:order-1">
+      <h3 class='text-primary py-4 md:text-3xl text-xl font-medium'>{banner?.fields.heading}</h3>
+      <p class='font-light'>{banner?.fields.subHeader}</p>
     </div>
-    <div>
+    <div class='flex-1 rounded shadow-lg order-1 md:order-2'>
       <Image
         src={banner?.fields.backgroundImage?.fields.file?.url ?? ""}
         alt={banner?.fields.backgroundImage?.fields.title ?? ""}
         width={banner?.fields.backgroundImage?.fields.file?.details.image?.width ?? 400}
         height={banner?.fields.backgroundImage?.fields.file?.details.image?.height ?? 800}
+        class='object-cover h-full rounded'
       />
     </div>
   </section>
