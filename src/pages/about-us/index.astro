@@ -3,16 +3,35 @@ import "@/styles/globals.css";
 import MainLayout from "@/components/layouts/main-layout.astro";
 import { contentfulClient } from "@/lib/contentful";
 import type { TypeAboutUsSkeleton } from "@/types/contentful";
+import { Image } from "astro:assets";
 
 const aboutUsPage =
   await contentfulClient.withoutUnresolvableLinks.getEntry<TypeAboutUsSkeleton>(
     "3b7ISNoeZIr5JBD37hYNLq",
   );
+
+const banner = aboutUsPage.fields.aboutUsBanner?.fields;
+const bannerImage = banner?.backgroundImage?.fields;
 ---
 
 <MainLayout title="About Us - Boules Consulting">
   <main>
-    <p>About Us</p>
+    <section
+      class={`relative h-48 md:h-96 w-full overflow-y-clip flex justify-center items-center`}
+    >
+      <Image
+        src={bannerImage?.file?.url ?? ""}
+        alt={bannerImage?.title ?? ""}
+        width={bannerImage?.file?.details.image?.width ?? 1600}
+        height={bannerImage?.file?.details.image?.height ?? 900}
+        class={"absolute -z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-full w-full object-cover"}
+      />
+      <div class="absolute top-0 left-0 -z-10 w-full h-full bg-foreground/40">
+      </div>
+      <h1 class="text-white text-3xl md:text-5xl font-medium">
+        {banner?.heading}
+      </h1>
+    </section>
     <pre>
       {JSON.stringify(aboutUsPage, null, 4)}
     </pre>
