@@ -3,6 +3,7 @@ import type { Entry } from "contentful";
 import type { TypeServicesPageSkeleton } from "@/types/contentful";
 import ArrowsBackground from "../_components/ArrowsBackground";
 import { Image } from "astro:assets";
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 
 interface Props {
   data: Entry<TypeServicesPageSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>;
@@ -10,6 +11,7 @@ interface Props {
 
 const { data } = Astro.props;
 const banner = data.fields.servicesBanner;
+const cards = data.fields.serviceCards;
 ---
 
 <div>
@@ -37,24 +39,68 @@ const banner = data.fields.servicesBanner;
     </p>
   </section>
 
-  <section class="max-w-screen-lg flex md:flex-row flex-col gap-8 m-auto px-8 items-center">
+  <section
+    class="max-w-screen-lg flex md:flex-row flex-col gap-8 m-auto px-8 items-center"
+  >
     <div class="flex-1 order-2 md:order-1">
-      <h3 class='text-primary py-4 md:text-3xl text-xl font-medium'>{banner?.fields.heading}</h3>
-      <p class='font-light'>{banner?.fields.subHeader}</p>
+      <h3 class="text-primary py-4 md:text-3xl text-xl font-medium">
+        {banner?.fields.heading}
+      </h3>
+      <p class="font-light">{banner?.fields.subHeader}</p>
     </div>
-    <div class='flex-1 rounded shadow-lg order-1 md:order-2'>
+    <div class="flex-1 rounded shadow-lg order-1 md:order-2">
       <Image
         src={banner?.fields.backgroundImage?.fields.file?.url ?? ""}
         alt={banner?.fields.backgroundImage?.fields.title ?? ""}
-        width={banner?.fields.backgroundImage?.fields.file?.details.image?.width ?? 400}
-        height={banner?.fields.backgroundImage?.fields.file?.details.image?.height ?? 800}
-        class='object-cover h-full rounded'
+        width={banner?.fields.backgroundImage?.fields.file?.details.image
+          ?.width ?? 400}
+        height={banner?.fields.backgroundImage?.fields.file?.details.image
+          ?.height ?? 800}
+        class="object-cover h-full rounded"
       />
     </div>
   </section>
 
-  <pre
-    class="overflow-x-clip">
-      {JSON.stringify(data.fields, null, 2)} 
-  </pre>
+  <section
+    class="flex justify-center p-8 py-28 gap-8 md:flex-row flex-col flex-wrap"
+  >
+    {
+      cards.map((card) => (
+        <div class="h-fit md:max-w-96 p-4 border border-border rounded bg-background ">
+          <div class="flex gap-4">
+            <div class="h-20 w-20 p-2 bg-primary rounded">
+              <Image
+                class="object-contain h-full"
+                src={card?.fields.icon?.fields.file?.url ?? ""}
+                alt={card?.fields.icon?.fields.title ?? ""}
+                width={100}
+                height={100}
+              />
+            </div>
+            <div class="flex-1">
+              <h3 class="text-2xl font-medium mb-1">{card?.fields.title}</h3>
+              <p class="text-sm font-light">{card?.fields.description}</p>
+            </div>
+          </div>
+
+          <div class="my-4 bg-border h-[1px] w-11/12 mx-auto" />
+
+          <div>
+            {card?.fields.dynamicContent && (
+              <article
+                set:html={documentToHtmlString(card?.fields.dynamicContent)}
+                class="card-dynamic"
+              />
+            )}
+          </div>
+        </div>
+      ))
+    }
+  </section>
 </div>
+
+<style is:global>
+  .card-dynamic > p {
+    margin: 24px 0px;
+  }
+</style>
