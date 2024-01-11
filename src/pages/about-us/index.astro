@@ -1,10 +1,20 @@
 ---
 import "@/styles/globals.css";
 import MainLayout from "@/components/layouts/main-layout.astro";
+import { contentfulClient } from "@/lib/contentful";
+import type { TypeAboutUsSkeleton } from "@/types/contentful";
+
+const aboutUsPage =
+  await contentfulClient.withoutUnresolvableLinks.getEntry<TypeAboutUsSkeleton>(
+    "3b7ISNoeZIr5JBD37hYNLq",
+  );
 ---
 
 <MainLayout title="About Us - Boules Consulting">
   <main>
     <p>About Us</p>
+    <pre>
+      {JSON.stringify(aboutUsPage, null, 4)}
+    </pre>
   </main>
 </MainLayout>

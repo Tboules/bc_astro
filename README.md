@@ -40,7 +40,7 @@ in the services navigator.
 - [x] Setup tailwind and incorporate Tailwind UI Comps
 - [x] Create Site Layout
 - [x] Create Redesign mockups and for pages from site rewrite document
-- [ ] Update Contentful data model to incorporate new changes
+- [x] Update Contentful data model to incorporate new changes
 - [ ] Build out each major page
 - [ ] Build out Blog page template and dynamic route logic
 - [x] Set up server side endpoints for sending emails

@@ -16,6 +16,7 @@ export default function ArrowsBackground() {
           />
         );
       })}
+      <div className="w-full h-96 bg-gradient-to-b from-background/30 to-background/80 blur-sm absolute bottom-0 left-0" />
     </div>
   );
 }
