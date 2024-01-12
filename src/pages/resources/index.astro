@@ -1,10 +1,37 @@
 ---
 import "@/styles/globals.css";
 import MainLayout from "@/components/layouts/main-layout.astro";
+import { contentfulClient } from "@/lib/contentful";
+import type {
+  TypeBlogPostSkeleton,
+  TypeInTheNewsSkeleton,
+} from "@/types/contentful";
+
+const blogPosts =
+  await contentfulClient.withoutUnresolvableLinks.getEntries<TypeBlogPostSkeleton>(
+    {
+      content_type: "blogPost",
+      limit: 3,
+    },
+  );
+
+const newsSnippets = 
+  await contentfulClient.withoutUnresolvableLinks.getEntries<TypeInTheNewsSkeleton>({
+    content_type: "inTheNews",
+    limit: 4,
+  });
+
+
 ---
 
 <MainLayout title="Resources - Boules Consulting">
   <main>
     <p>Resources</p>
+    <pre class="overflow-x-clip">
+      {JSON.stringify(newsSnippets, null, 2)}
+    </pre>
+    <pre class="overflow-x-clip">
+      {JSON.stringify(blogPosts, null, 2)}
+    </pre>
   </main>
 </MainLayout>

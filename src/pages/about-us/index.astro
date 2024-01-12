@@ -4,7 +4,6 @@ import MainLayout from "@/components/layouts/main-layout.astro";
 import { contentfulClient } from "@/lib/contentful";
 import type { TypeAboutUsSkeleton } from "@/types/contentful";
 import { Image } from "astro:assets";
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 
 const aboutUsPage =
   await contentfulClient.withoutUnresolvableLinks.getEntry<TypeAboutUsSkeleton>(
@@ -18,7 +17,7 @@ const bannerImage = banner?.backgroundImage?.fields;
 <MainLayout title="About Us - Boules Consulting">
   <main>
     <section
-      class={`relative h-48 md:h-96 w-full overflow-y-clip flex justify-center items-center`}
+      class={`relative h-48 md:h-56 w-full overflow-y-clip flex justify-center items-center`}
     >
       <Image
         src={bannerImage?.file?.url ?? ""}
@@ -27,18 +26,16 @@ const bannerImage = banner?.backgroundImage?.fields;
         height={bannerImage?.file?.details.image?.height ?? 900}
         class={"absolute -z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-full w-full object-cover"}
       />
-      <div class="absolute top-0 left-0 -z-10 w-full h-full bg-foreground/40">
-      </div>
       <h1 class="text-white text-3xl md:text-5xl font-medium">
         {banner?.heading}
       </h1>
     </section>
 
     <section class="max-w-screen-lg m-auto p-4 md:p-16">
-      <div class="bg-primary/90 p-4 text-primary-foreground rounded shadow">
+      <div class="">
         <article
           set:html={aboutUsPage.fields.whatWeDo?.fields.text}
-          class="text-lg"
+          class="text-lg font-light text-justify"
         />
       </div>
     </section>
@@ -49,11 +46,10 @@ const bannerImage = banner?.backgroundImage?.fields;
         {
           aboutUsPage.fields.ourTeam.map((member) => (
             <div class="p-4 w-full mb-4 border border-border rounded break-inside-avoid-column bg-background/20 shadow">
-              <!-- title section  -->
-              <div class='flex gap-4 items-end'>
-                <div class='h-32 rounded'>
+              <div class="flex gap-4 items-end">
+                <div class="h-32 rounded">
                   <Image
-                    class='object-cover h-full rounded'
+                    class="object-cover h-full rounded"
                     src={member?.fields.employeeImage?.fields.file?.url ?? ""}
                     alt={member?.fields.employeeImage?.fields.title ?? ""}
                     width={100}
@@ -61,16 +57,17 @@ const bannerImage = banner?.backgroundImage?.fields;
                   />
                 </div>
                 <div>
-                  <h4 class='font-medium'> {member?.fields.name} </h4>
-                  <p class='text-xl font-light text-primary'>{member?.fields.jobTitle}</p>
+                  <h4 class="font-medium"> {member?.fields.name} </h4>
+                  <p class="text-xl font-light text-primary">
+                    {member?.fields.jobTitle}
+                  </p>
                 </div>
               </div>
 
-              <div class='w-11/12 bg-border m-auto my-4 h-[1px]' />
+              <div class="w-11/12 bg-border m-auto my-4 h-[1px]" />
 
-              <!-- body of card -->
               <div>
-                <p>{member?.fields.description}</p> 
+                <p>{member?.fields.description}</p>
               </div>
             </div>
           ))

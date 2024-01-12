@@ -14,6 +14,7 @@ export interface TypeAboutUsFields {
     EntryFieldTypes.EntryLink<TypeEmployeeCardSkeleton>
   >;
   carouselImages?: EntryFieldTypes.EntryLink<TypeCarouselImagesSkeleton>;
+  ourStory?: EntryFieldTypes.RichText;
 }
 
 export type TypeAboutUsSkeleton = EntrySkeletonType<
@@ -185,6 +186,23 @@ export type TypeImageCards<
   Modifiers extends ChainModifiers,
   Locales extends LocaleCode,
 > = Entry<TypeImageCardsSkeleton, Modifiers, Locales>;
+
+export interface TypeInTheNewsFields {
+  slug: EntryFieldTypes.Symbol;
+  title: EntryFieldTypes.Symbol;
+  link: EntryFieldTypes.Symbol;
+  image: EntryFieldTypes.AssetLink;
+  description?: EntryFieldTypes.Text;
+}
+
+export type TypeInTheNewsSkeleton = EntrySkeletonType<
+  TypeInTheNewsFields,
+  "inTheNews"
+>;
+export type TypeInTheNews<
+  Modifiers extends ChainModifiers,
+  Locales extends LocaleCode,
+> = Entry<TypeInTheNewsSkeleton, Modifiers, Locales>;
 
 export interface TypeServicesPageFields {
   slug?: EntryFieldTypes.Symbol;
