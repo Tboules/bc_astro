@@ -1,0 +1,32 @@
+---
+import type { Entry } from "contentful";
+import type { TypeBlogPostSkeleton } from "@/types/contentful";
+import { Image } from "astro:assets";
+
+interface Props {
+  post: Entry<TypeBlogPostSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>;
+}
+
+const { post } = Astro.props;
+---
+
+<a
+  href={`/resources/${post.fields.slug}`}
+  class="block break-inside-avoid-column cursor-pointer shadow flex-1 border border-border rounded bg-background/10 backdrop-blur-sm overflow-clip hover:scale-[1.02] transition-all"
+>
+  <Image
+    alt={post.fields.image?.fields.title ?? ""}
+    src={post.fields.image?.fields.file?.url ?? ""}
+    width={500}
+    height={500}
+  />
+  <div class="p-2">
+    <h3 class="text-primary font-medium text-lg">
+      {post.fields.title}
+    </h3>
+    <div class="w-7/12 h-[1px] bg-border my-2"></div>
+    <p class="font-light text-sm mt-4">
+      {post.fields.cardDescription}
+    </p>
+  </div>
+</a>

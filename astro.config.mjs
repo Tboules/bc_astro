@@ -19,4 +19,7 @@ export default defineConfig({
   adapter: vercel({
     includeFiles: ["./public/MNC.pdf"],
   }),
+  image: {
+    domains: ["images.ctfassets.net"],
+  },
 });

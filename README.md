@@ -36,12 +36,12 @@ in the services navigator.
 ### Todo List
 
 - [x] Generate Types for all Contentful Data
-- [ ] Query all pages and content
+- [x] Query all pages and content
 - [x] Setup tailwind and incorporate Tailwind UI Comps
 - [x] Create Site Layout
 - [x] Create Redesign mockups and for pages from site rewrite document
 - [x] Update Contentful data model to incorporate new changes
-- [ ] Build out each major page
+- [x] Build out each major page
 - [ ] Build out Blog page template and dynamic route logic
 - [x] Set up server side endpoints for sending emails
 - [ ] Restore SEO deps like google and fb tag manager

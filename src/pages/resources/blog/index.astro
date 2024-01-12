@@ -1,0 +1,38 @@
+---
+import "@/styles/globals.css";
+import MainLayout from "@/components/layouts/main-layout.astro";
+import { contentfulClient } from "@/lib/contentful";
+import type { TypeBlogPostSkeleton } from "@/types/contentful";
+import ResourcesTitle from '../_components/title.astro'
+import BlogCard from "../_components/blog_card.astro";
+
+let blogPosts =
+  await contentfulClient.withoutUnresolvableLinks.getEntries<TypeBlogPostSkeleton>(
+    {
+      content_type: "blogPost",
+    },
+  );
+
+blogPosts.items = blogPosts.items.filter((post) => post.sys.revision != 0);
+---
+
+<MainLayout title='Blog - Boules Consulting'>
+  <main>
+    <section class="p-4 md:p-8 max-w-screen-xl m-auto">
+      <ResourcesTitle title='Boules Consulting Blog' />
+      <div class="columns-1 sm:columns-2 lg:columns-3 gap-4">
+        {
+          blogPosts.items.map((post) => (
+            <div class='mb-4'>
+              <BlogCard post={post} />
+            </div>
+          ))
+        }
+
+      </div>
+      <pre>
+        {JSON.stringify(blogPosts.items, null,2)}
+      </pre>
+    </section>
+  </main>
+</MainLayout>
