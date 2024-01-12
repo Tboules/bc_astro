@@ -6,6 +6,7 @@ import type {
   TypeBlogPostSkeleton,
   TypeInTheNewsSkeleton,
 } from "@/types/contentful";
+import ResourcesTitle from './_components/title.astro'
 
 const blogPosts =
   await contentfulClient.withoutUnresolvableLinks.getEntries<TypeBlogPostSkeleton>(
@@ -21,17 +22,21 @@ const newsSnippets =
     limit: 4,
   });
 
-
 ---
 
 <MainLayout title="Resources - Boules Consulting">
   <main>
-    <p>Resources</p>
-    <pre class="overflow-x-clip">
-      {JSON.stringify(newsSnippets, null, 2)}
-    </pre>
-    <pre class="overflow-x-clip">
-      {JSON.stringify(blogPosts, null, 2)}
-    </pre>
+    <section class='p-8 max-w-screen-lg m-auto'>
+      <ResourcesTitle title='Blog Posts'/>
+      <pre class="overflow-clip h-96">
+        {JSON.stringify(newsSnippets, null, 2)}
+      </pre>
+    </section>
+    <section class='p-8 max-w-screen-lg m-auto'>
+      <ResourcesTitle title='In The News' />
+      <pre class="overflow-clip h-96">
+        {JSON.stringify(blogPosts, null, 2)}
+      </pre>
+    </section>
   </main>
 </MainLayout>
