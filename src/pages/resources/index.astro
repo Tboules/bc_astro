@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import "@/styles/globals.css";
 import MainLayout from "@/components/layouts/main-layout.astro";
 import { contentfulClient } from "@/lib/contentful";
@@ -6,36 +7,69 @@ import type {
   TypeBlogPostSkeleton,
   TypeInTheNewsSkeleton,
 } from "@/types/contentful";
-import ResourcesTitle from './_components/title.astro'
+import ResourcesTitle from "./_components/title.astro";
+import { ArrowRight } from "lucide-react";
 
 const blogPosts =
   await contentfulClient.withoutUnresolvableLinks.getEntries<TypeBlogPostSkeleton>(
     {
       content_type: "blogPost",
-      limit: 3,
+      limit: 4,
     },
   );
 
-const newsSnippets = 
-  await contentfulClient.withoutUnresolvableLinks.getEntries<TypeInTheNewsSkeleton>({
-    content_type: "inTheNews",
-    limit: 4,
-  });
-
+const newsSnippets =
+  await contentfulClient.withoutUnresolvableLinks.getEntries<TypeInTheNewsSkeleton>(
+    {
+      content_type: "inTheNews",
+      limit: 4,
+    },
+  );
 ---
 
 <MainLayout title="Resources - Boules Consulting">
   <main>
-    <section class='p-8 max-w-screen-lg m-auto'>
-      <ResourcesTitle title='Blog Posts'/>
-      <pre class="overflow-clip h-96">
-        {JSON.stringify(newsSnippets, null, 2)}
-      </pre>
+    <section class="p-4 md:p-8 max-w-screen-lg m-auto">
+      <ResourcesTitle title="Blog Posts" />
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {
+          blogPosts.items.map((item) => (
+            <a
+              href={item.fields.slug}
+              class="cursor-pointer shadow flex-1 border border-border rounded bg-background/10 backdrop-blur-sm overflow-clip hover:scale-[1.02] transition-all"
+            >
+              <Image
+                alt={item.fields.image?.fields.title ?? ""}
+                src={item.fields.image?.fields.file?.url ?? ""}
+                width={500}
+                height={500}
+              />
+              <div class="p-2">
+                <h3 class="text-primary font-medium text-lg">
+                  {item.fields.title}
+                </h3>
+                <div class="w-7/12 h-[1px] bg-border my-2" />
+                <p class="font-light text-sm mt-4">
+                  {item.fields.cardDescription}
+                </p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+      <a
+        href="/blog"
+        class="pt-8 justify-end gap-4 hover:scale-[1.03] transition-all inline-flex w-full text-primary font-semibold"
+      >
+        View All Blog Posts
+        <ArrowRight />
+      </a>
     </section>
-    <section class='p-8 max-w-screen-lg m-auto'>
-      <ResourcesTitle title='In The News' />
-      <pre class="overflow-clip h-96">
-        {JSON.stringify(blogPosts, null, 2)}
+    <section class="p-8 max-w-screen-lg m-auto">
+      <ResourcesTitle title="In The News" />
+      <pre
+        class="overflow-clip h-96">
+        {JSON.stringify(newsSnippets, null, 2)}
       </pre>
     </section>
   </main>
