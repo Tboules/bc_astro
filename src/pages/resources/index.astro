@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import "@/styles/globals.css";
 import MainLayout from "@/components/layouts/main-layout.astro";
 import { contentfulClient } from "@/lib/contentful";
@@ -33,11 +32,7 @@ const newsSnippets =
     <section class="p-4 md:p-8 max-w-screen-lg m-auto">
       <ResourcesTitle title="Blog Posts" />
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {
-          blogPosts.items.map((post) => (
-            <BlogCard post={post} />
-          ))
-        }
+        {blogPosts.items.map((post) => <BlogCard post={post} />)}
       </div>
       <a
         href="/resources/blog"

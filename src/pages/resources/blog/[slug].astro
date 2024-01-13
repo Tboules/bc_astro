@@ -1,0 +1,76 @@
+---
+import "@/styles/globals.css";
+import { contentfulClient } from "@/lib/contentful";
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import type { TypeBlogPostSkeleton } from "@/types/contentful";
+import type { InferGetStaticPropsType, GetStaticPaths } from 'astro';
+import MainLayout from "@/components/layouts/main-layout.astro";
+
+
+export const getStaticPaths = (async () => {
+  const { items } =
+    await contentfulClient.withoutUnresolvableLinks.getEntries<TypeBlogPostSkeleton>(
+      {
+        content_type: "blogPost",
+      },
+    );
+
+    console.log(items[0].fields.slug.split('/')[1])
+
+  const pages = items.map((post) => ({
+    params: {
+      slug: post.fields.slug?.split('/')[1] ?? 'oops',
+    },
+    props: {
+      title: post.fields.title,
+      content: documentToHtmlString(post.fields.articleBody),
+    },
+  }));
+
+  return pages;
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>
+
+const {title, content} = Astro.props;
+---
+
+<MainLayout title={`${title} -- Boules Consulting`}>
+  <main class='max-w-screen-lg m-auto p-4 md:p-12'>
+    <section class='pb-8'>
+      <h1 class='font-medium text-primary text-2xl md:text-3xl leading-normal '>{title}</h1>
+    </section>
+    <section>
+      <article class='blog-post' set:html={content} />
+    </section>
+  </main>
+</MainLayout>
+
+<style is:global>
+  .blog-post p {
+    padding: 0.5rem 0;
+    text-align: justify;
+    font-weight: 300;
+  }
+
+  .blog-post h1, h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 0.5rem 0;
+  }
+
+  .blog-post h3, h4, h5 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+  }
+
+  .blog-post b {
+    font-weight: 600;
+  }
+
+  .blog-post u {
+    text-decoration: underline;
+  }
+
+</style>
