@@ -96,3 +96,18 @@ helpful resources:
 > In order to speed up development and facilitate better learning, I have decided to use shadcn ui.
 > In the set up of the library, be careful that you choose the proper alias names in your components.json.
 > If it's off even a little, the whole library falls apart.
+
+---
+
+### Accessing Files Vercel API adapter
+
+> In order to access files from our vercel serverless api functions, we need to make sure that we place those files in the proper location
+> I ended up learning that you need to place the files in the public folder and also you need to
+> make sure that those files are available in the vercel adapter configuration like so:
+
+```javascript
+  //astro.config.mjs
+  adapter: vercel({
+    includeFiles: ["./public/MNC.pdf"],
+  }),
+```
