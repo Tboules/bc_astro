@@ -11,12 +11,16 @@ import {
 mail.setApiKey(import.meta.env.SENDGRID_API_KEY);
 
 export const POST: APIRoute = async ({ request }) => {
+  if (request.headers.get("Content-Type") !== "application/json") {
+    return new Response(null, { status: 400 });
+  }
+
   try {
     const requestBody: ICallToActionFormSchema = await request.json();
 
     callToActionFormSchema.parse(requestBody);
 
-    const file = readFileSync("public/MCF.pdf");
+    const file = readFileSync("public/checklist.pdf");
     const attachment = file.toString("base64");
 
     const msg = {
