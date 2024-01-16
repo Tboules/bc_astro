@@ -31,7 +31,7 @@ export default function CTAReactForm() {
   const onSubmit = async (d: ICallToActionFormSchema) => {
     setLoading(true);
     try {
-      await fetch("/api/promo", {
+      await fetch("/api/checklist", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
