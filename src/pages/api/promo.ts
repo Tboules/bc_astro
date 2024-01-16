@@ -21,7 +21,7 @@ export const POST: APIRoute = async ({ request }) => {
     callToActionFormSchema.parse(requestBody);
 
     const file = readFileSync("public/checklist.pdf");
-    const attachment = file.toString("base64");
+    const attachment_base = file.toString("base64");
 
     const msg = {
       to: requestBody.email,
@@ -35,7 +35,7 @@ export const POST: APIRoute = async ({ request }) => {
     `,
       attachments: [
         {
-          content: attachment,
+          content: attachment_base,
           filename: "attachment.pdf",
           type: "application/pdf",
           disposition: "attachment",
