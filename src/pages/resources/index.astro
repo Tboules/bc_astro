@@ -9,6 +9,7 @@ import type {
 import ResourcesTitle from "./_components/title.astro";
 import { ArrowRight } from "lucide-react";
 import BlogCard from "./_components/blog_card.astro";
+import NewsCard from "./_components/news_card.astro";
 
 const blogPosts =
   await contentfulClient.withoutUnresolvableLinks.getEntries<TypeBlogPostSkeleton>(
@@ -44,10 +45,9 @@ const newsSnippets =
     </section>
     <section class="p-8 max-w-screen-lg m-auto">
       <ResourcesTitle title="In The News" />
-      <pre
-        class="overflow-clip h-96">
-        {JSON.stringify(newsSnippets, null, 2)}
-      </pre>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {newsSnippets.items.map((newsItem) => <NewsCard newsItem={newsItem} />)} 
+      </div>
     </section>
   </main>
 </MainLayout>
