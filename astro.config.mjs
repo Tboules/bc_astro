@@ -17,7 +17,7 @@ export default defineConfig({
   ],
   output: "hybrid",
   adapter: vercel({
-    includeFiles: ["./public/MCF.pdf"],
+    includeFiles: ["./public/MCF.pdf", "./public/MNC.pdf"],
     functionPerRoute: true,
   }),
   image: {
