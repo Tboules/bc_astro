@@ -18,6 +18,7 @@ export default defineConfig({
   output: "hybrid",
   adapter: vercel({
     includeFiles: ["./public/MCF.pdf"],
+    functionPerRoute: true,
   }),
   image: {
     domains: ["images.ctfassets.net"],
