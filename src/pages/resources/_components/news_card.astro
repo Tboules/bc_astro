@@ -12,14 +12,19 @@ const { newsItem } = Astro.props;
 
 <a
   href={newsItem.fields.link}
-  class="block break-inside-avoid-column cursor-pointer shadow flex-1 border border-border rounded bg-background/10 backdrop-blur-sm overflow-clip hover:scale-[1.02] transition-all"
+  class="mb-4 block break-inside-avoid-column cursor-pointer shadow flex-1 border border-border rounded bg-background/10 backdrop-blur-sm overflow-clip hover:scale-[1.02] transition-all"
+  target="_blank"
 >
-  <Image
-    alt={newsItem.fields.image?.fields.title ?? ""}
-    src={newsItem.fields.image?.fields.file?.url ?? ""}
-    width={800}
-    height={800}
-  />
+  {
+    newsItem.fields.image?.fields.file?.url && (
+      <Image
+        alt={newsItem.fields.image?.fields.title ?? ""}
+        src={newsItem.fields.image?.fields.file?.url}
+        width={800}
+        height={800}
+      />
+    )
+  }
   <div class="p-2">
     <h3 class="text-primary font-medium text-lg">
       {newsItem.fields.title}

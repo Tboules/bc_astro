@@ -1,0 +1,32 @@
+---
+import "@/styles/globals.css";
+import MainLayout from "@/components/layouts/main-layout.astro";
+import { contentfulClient } from "@/lib/contentful";
+import type { TypeInTheNewsSkeleton } from "@/types/contentful";
+import ResourcesTitle from "../_components/title.astro";
+import NewsCard from "../_components/news_card.astro";
+
+let newsItems =
+  await contentfulClient.withoutUnresolvableLinks.getEntries<TypeInTheNewsSkeleton>(
+    {
+      content_type: "inTheNews",
+    },
+  );
+---
+
+<MainLayout title="In The News - Boules Consulting">
+  <main>
+    <section class="p-4 md:p-8 max-w-screen-xl m-auto">
+      <ResourcesTitle title="Boules Consulting In The News" />
+      <div class="columns-1 sm:columns-2 lg:columns-3 gap-4">
+        {
+          newsItems.items.map((newsItem) => (
+            <div class="mb-4">
+              <NewsCard newsItem={newsItem} />
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</MainLayout>

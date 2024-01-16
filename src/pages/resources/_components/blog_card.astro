@@ -14,12 +14,16 @@ const { post } = Astro.props;
   href={`/resources/${post.fields.slug}`}
   class="block break-inside-avoid-column cursor-pointer shadow flex-1 border border-border rounded bg-background/10 backdrop-blur-sm overflow-clip hover:scale-[1.02] transition-all"
 >
-  <Image
-    alt={post.fields.image?.fields.title ?? ""}
-    src={post.fields.image?.fields.file?.url ?? ""}
-    width={800}
-    height={800}
-  />
+  {
+    post.fields.image?.fields.file?.url && (
+      <Image
+        alt={post.fields.image?.fields.title ?? ""}
+        src={post.fields.image?.fields.file?.url}
+        width={800}
+        height={800}
+      />
+    )
+  }
   <div class="p-2">
     <h3 class="text-primary font-medium text-lg">
       {post.fields.title}

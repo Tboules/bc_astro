@@ -45,9 +45,16 @@ const newsSnippets =
     </section>
     <section class="p-8 max-w-screen-lg m-auto">
       <ResourcesTitle title="In The News" />
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {newsSnippets.items.map((newsItem) => <NewsCard newsItem={newsItem} />)} 
+      <div class="columns-1 md:columns-2 gap-4">
+        {newsSnippets.items.map((newsItem) => <NewsCard newsItem={newsItem} />)}
       </div>
+      <a
+        href="/resources/in-the-news"
+        class="pt-8 justify-end gap-4 hover:scale-[1.03] transition-all inline-flex w-full text-primary font-semibold"
+      >
+        View All In The News Posts
+        <ArrowRight />
+      </a>
     </section>
   </main>
 </MainLayout>
