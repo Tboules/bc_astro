@@ -1,12 +1,13 @@
 export const prerender = false;
 
 import type { APIRoute } from "astro";
-import { readFile } from "fs/promises";
+import { readFileSync } from "fs";
 import mail from "@sendgrid/mail";
 import {
   callToActionFormSchema,
   type ICallToActionFormSchema,
 } from "@/types/forms";
+import path from "path";
 
 mail.setApiKey(import.meta.env.SENDGRID_API_KEY);
 
@@ -20,8 +21,8 @@ export const POST: APIRoute = async ({ request }) => {
 
     callToActionFormSchema.parse(requestBody);
 
-    const file = await readFile("/MCF.pdf");
-    const attachment_base = file.toString("base64");
+    const file = path.join(process.cwd(), "MCF.pdf");
+    const fileString = readFileSync(file, "base64");
 
     const msg = {
       to: requestBody.email,
@@ -35,7 +36,7 @@ export const POST: APIRoute = async ({ request }) => {
     `,
       attachments: [
         {
-          content: attachment_base,
+          content: fileString,
           filename: "attachment.pdf",
           type: "application/pdf",
           disposition: "attachment",
@@ -55,3 +56,8 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(JSON.stringify(error), { status: 400 });
   }
 };
+
+// function getPublicFilePath(p: string): string {
+//   const originalPath = p.replace("./public", "");
+//   return path.resolve("./public", originalPath);
+// }
