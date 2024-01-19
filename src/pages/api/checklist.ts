@@ -9,6 +9,8 @@ import {
 } from "@/types/forms";
 // import path from "path";
 
+import blegh from "../../assets/checklist.pdf";
+
 mail.setApiKey(import.meta.env.SENDGRID_API_KEY);
 
 export const POST: APIRoute = async ({ request }) => {
@@ -21,8 +23,8 @@ export const POST: APIRoute = async ({ request }) => {
 
     callToActionFormSchema.parse(requestBody);
 
-    // const file = path.join(process.cwd(), "checklist.pdf");
-    const fileString = readFileSync("/checklist.pdf", "base64");
+    const file = new URL("../../assets/checklist.pdf", import.meta.url);
+    const fileString = readFileSync(file, "base64");
 
     const msg = {
       to: requestBody.email,
