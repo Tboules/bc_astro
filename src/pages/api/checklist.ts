@@ -7,9 +7,7 @@ import {
   callToActionFormSchema,
   type ICallToActionFormSchema,
 } from "@/types/forms";
-// import path from "path";
-
-import blegh from "../../assets/checklist.pdf";
+import path from "path";
 
 mail.setApiKey(import.meta.env.SENDGRID_API_KEY);
 
@@ -23,7 +21,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     callToActionFormSchema.parse(requestBody);
 
-    const file = new URL("../../assets/checklist.pdf", import.meta.url);
+    const file = path.join(process.cwd(), "public", "checklist.pdf");
     const fileString = readFileSync(file, "base64");
 
     const msg = {
