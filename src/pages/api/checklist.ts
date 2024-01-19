@@ -21,10 +21,8 @@ export const POST: APIRoute = async ({ request }) => {
 
     callToActionFormSchema.parse(requestBody);
 
-    const fileString = readFileSync(
-      getPublicFilePath("./public/MCF.pdf"),
-      "base64",
-    );
+    const file = path.join(process.cwd(), "public", "MCF.pdf");
+    const fileString = readFileSync(file, "base64");
 
     const msg = {
       to: requestBody.email,
@@ -58,8 +56,3 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(JSON.stringify(error), { status: 400 });
   }
 };
-
-function getPublicFilePath(p: string): string {
-  const originalPath = p.replace("/public", "");
-  return path.resolve("./public", originalPath);
-}
