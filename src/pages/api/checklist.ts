@@ -1,7 +1,7 @@
 export const prerender = false;
 
 import type { APIRoute } from "astro";
-import { readFileSync } from "fs";
+import { readFile } from "fs/promises";
 import mail from "@sendgrid/mail";
 import {
   callToActionFormSchema,
@@ -20,7 +20,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     callToActionFormSchema.parse(requestBody);
 
-    const file = readFileSync("./MCF.pdf");
+    const file = await readFile("./MCF.pdf");
     const attachment_base = file.toString("base64");
 
     const msg = {
