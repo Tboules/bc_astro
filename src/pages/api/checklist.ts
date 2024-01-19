@@ -20,7 +20,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     callToActionFormSchema.parse(requestBody);
 
-    const file = await readFile("./MCF.pdf");
+    const file = await readFile("/MCF.pdf");
     const attachment_base = file.toString("base64");
 
     const msg = {
