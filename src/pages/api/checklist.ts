@@ -7,6 +7,7 @@ import {
   callToActionFormSchema,
   type ICallToActionFormSchema,
 } from "@/types/forms";
+import path from "path";
 
 mail.setApiKey(import.meta.env.SENDGRID_API_KEY);
 
@@ -20,7 +21,8 @@ export const POST: APIRoute = async ({ request }) => {
 
     callToActionFormSchema.parse(requestBody);
 
-    const fileString = readFileSync("./public/checklist.pdf", "base64");
+    const file = path.join(process.cwd(), "static", "checklist.pdf");
+    const fileString = readFileSync(file, "base64");
 
     const msg = {
       to: requestBody.email,
