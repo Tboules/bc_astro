@@ -21,7 +21,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     callToActionFormSchema.parse(requestBody);
 
-    const file = path.join(process.cwd(), "static", "checklist.pdf");
+    const file = path.join(process.cwd(), "checklist.pdf");
     const fileString = readFileSync(file, "base64");
 
     const msg = {
