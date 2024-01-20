@@ -32,13 +32,13 @@ export default function CTAReactForm() {
   const onSubmit = async (d: ICallToActionFormSchema) => {
     setLoading(true);
     try {
-      // await fetch("/api/checklist", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(d),
-      // });
+      await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(d),
+      });
 
       if (ref.current) {
         ref.current.click();

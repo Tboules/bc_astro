@@ -8,26 +8,29 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+  callToActionFormSchema,
+  type ICallToActionFormSchema,
+} from "@/types/forms";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import * as z from "zod";
-
-const formSchema = z.object({
-  mail: z.string().email(),
-});
-
-type IFormSchema = z.infer<typeof formSchema>;
 
 export default function MailchimpForm() {
-  const form = useForm<IFormSchema>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<ICallToActionFormSchema>({
+    resolver: zodResolver(callToActionFormSchema),
     defaultValues: {
-      mail: "",
+      email: "",
     },
   });
 
-  function onSubmit(data: IFormSchema) {
-    console.log(data);
+  async function onSubmit(data: ICallToActionFormSchema) {
+    await fetch("/api/subscribe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
     form.reset();
   }
 
@@ -39,7 +42,7 @@ export default function MailchimpForm() {
       >
         <FormField
           control={form.control}
-          name="mail"
+          name="email"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Email:</FormLabel>

@@ -22,6 +22,7 @@
     "@contentful/rich-text-html-renderer": "^16.3.0",
     "@glidejs/glide": "^3.6.0",
     "@hookform/resolvers": "^3.3.4",
+    "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-navigation-menu": "^1.1.4",
@@ -48,6 +49,7 @@
   "devDependencies": {
     "@types/glidejs": "^1.0.34",
     "@types/glidejs__glide": "^3.6.5",
+    "@types/mailchimp__mailchimp_marketing": "^3.0.17",
     "@types/node": "^20.11.4",
     "prettier": "^3.2.2",
     "prettier-plugin-astro": "^0.12.3"
