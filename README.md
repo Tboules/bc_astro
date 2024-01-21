@@ -46,6 +46,7 @@ in the services navigator.
 - [x] Set up server side endpoints for sending emails
 - [x] Restore SEO deps like google and fb tag manager
 - [x] Setup Mailchimp Integration
+- [ ] Point DNS at new site
 
 ## &nbsp;
 
@@ -113,7 +114,7 @@ helpful resources:
   }),
 ```
 
-** Warning This is Broken [github issue I opened](https://github.com/withastro/astro/issues/9743) **
+**Warning This is Broken [github issue I opened](https://github.com/withastro/astro/issues/9743)**
 
 As an interim solution, I decided to make the file available when they hit the submit button directly from the clientside, it also subscribes them to mailchimp
 
