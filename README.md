@@ -46,7 +46,8 @@ in the services navigator.
 - [x] Set up server side endpoints for sending emails
 - [x] Restore SEO deps like google and fb tag manager
 - [x] Setup Mailchimp Integration
-- [ ] Point DNS at new site
+- [x] Create webhook to update vercel when contentful CMS gets updated
+- [x] Point DNS at new site
 
 ## &nbsp;
 

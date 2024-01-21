@@ -81,8 +81,9 @@ function WideNavItem({ item }: { item: INavItem }) {
                       {subItem.display}
                     </h3>
                     <p className="text-foreground italic text-xs">
-                      Lorem ipsum dolor sit amet, qui minim labore adipisicing
-                      minim{" "}
+                      {subItem.display == "Social Enterprises"
+                        ? "We’ll help you build your business infrastructure, get funding ready, and win government grants and contracts"
+                        : "We work with government agencies to complete their strategic plans, position themselves for funding, and win grants"}
                     </p>
                   </NavigationMenuLink>
                 </li>
