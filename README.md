@@ -93,6 +93,8 @@ helpful resources:
 [Github Issue](https://github.com/contentful/contentful.js/issues/1932)  
 [Contentful Typescript Readme](https://github.com/contentful/contentful.js/blob/master/TYPESCRIPT.md)
 
+---
+
 ### **UI Change Decision**
 
 > In order to speed up development and facilitate better learning, I have decided to use shadcn ui.
@@ -117,6 +119,8 @@ helpful resources:
 **Warning This is Broken [github issue I opened](https://github.com/withastro/astro/issues/9743)**
 
 As an interim solution, I decided to make the file available when they hit the submit button directly from the clientside, it also subscribes them to mailchimp
+
+---
 
 ### Documentation for Mailchimp
 
