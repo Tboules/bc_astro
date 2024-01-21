@@ -31,6 +31,9 @@ export default function CTAReactForm() {
 
   const onSubmit = async (d: ICallToActionFormSchema) => {
     setLoading(true);
+    if (ref.current) {
+      ref.current.click();
+    }
     try {
       await fetch("/api/subscribe", {
         method: "POST",
@@ -40,9 +43,6 @@ export default function CTAReactForm() {
         body: JSON.stringify(d),
       });
 
-      if (ref.current) {
-        ref.current.click();
-      }
       setSent(true);
     } catch (error) {
       form.setError("root", {
