@@ -44,7 +44,8 @@ in the services navigator.
 - [x] Build out each major page
 - [x] Build out Blog page template and dynamic route logic
 - [x] Set up server side endpoints for sending emails
-- [ ] Restore SEO deps like google and fb tag manager
+- [x] Restore SEO deps like google and fb tag manager
+- [x] Setup Mailchimp Integration
 
 ## &nbsp;
 
@@ -111,3 +112,11 @@ helpful resources:
     includeFiles: ["./public/MNC.pdf"],
   }),
 ```
+
+** Warning This is Broken [github issue I opened](https://github.com/withastro/astro/issues/9743) **
+
+As an interim solution, I decided to make the file available when they hit the submit button directly from the clientside, it also subscribes them to mailchimp
+
+### Documentation for Mailchimp
+
+[Mailchimp Docs](https://mailchimp.com/developer/marketing/guides/create-your-first-audience/?_gl=1*1o5w5nh*_up*MQ..*_ga*MTE5Nzg4MjkzNC4xNzA1Nzk1MTM4*_ga_N5HD1RTH6E*MTcwNTc5NTEzNy4xLjEuMTcwNTc5NTE2OC4wLjAuMA..#add-a-contact-to-an-audience)
