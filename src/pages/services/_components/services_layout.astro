@@ -12,6 +12,8 @@ interface Props {
 const { data } = Astro.props;
 const banner = data.fields.servicesBanner;
 const cards = data.fields.serviceCards;
+
+console.log();
 ---
 
 <div>
@@ -26,17 +28,30 @@ const cards = data.fields.serviceCards;
       <div class="w-3 h-3 bg-primary rounded-full"></div>
       <h1 class="text-2xl md:text-5xl">Propel</h1>
     </div>
-    <p
-      class="py-4 md:py-12 max-w-screen-md m-auto text-lg md:text-2xl font-light text-justify md:leading-relaxed"
-    >
-      Using our Trademarked best practice of <span
-        class="italic text-primary font-medium">Prepare, Plan, Propel(™)</span
-      >, we work with your social enterprise to help you build your business to
-      get funding ready, position your business for the right opportunities, and
-      execute strategy to raise funding.  Our best practice is tailored to fit
-      any step of the journey your business is on, ensuring you have a trusted
-      support system every step of the way.
-    </p>
+    {
+      data.fields.slug == "social-enterprises" ? (
+        <p class="py-4 md:py-12 max-w-screen-md m-auto text-lg md:text-2xl font-light text-justify md:leading-relaxed">
+          Using our internally-developed best practice of{" "}
+          <span class="italic text-primary font-medium">
+            Prepare, Plan, Propel ™,
+          </span>
+          we help your social enterprise scale your impact by building a
+          strong foundation and sustainable infrastructure, position your
+          business for successful government procurement.
+        </p>
+      ) : (
+        <p class="py-4 md:py-12 max-w-screen-md m-auto text-lg md:text-2xl font-light text-justify md:leading-relaxed">
+          Using our internally-developed best practice of{" "}
+          <span class="italic text-primary font-medium">
+            Prepare, Plan, Propel ™,
+          </span>
+          we provide comprehensive government solutions from a community-up
+          approach, focusing first on project and meeting facilitation to inform
+          strategic plans, then helping to implement those plans through
+          equity-focused technical assistance.
+        </p>
+      )
+    }
   </section>
 
   <section
