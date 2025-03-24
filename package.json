@@ -10,7 +10,6 @@
     "preview": "astro preview",
     "astro": "astro",
     "pretty": "prettier --write . --plugin=prettier-plugin-astro",
-    "gen:types": "contentful-typescript-codegen --output @types/generated/contentful.d.ts",
     "comp:add": "pnpm dlx shadcn-ui@latest add"
   },
   "dependencies": {
