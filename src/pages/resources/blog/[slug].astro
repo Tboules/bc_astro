@@ -14,8 +14,6 @@ export const getStaticPaths = (async () => {
       },
     );
 
-  console.log(items[0].fields.slug.split("/")[1]);
-
   const pages = items.map((post) => ({
     params: {
       slug: post.fields.slug?.split("/")[1] ?? "oops",

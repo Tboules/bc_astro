@@ -14,6 +14,7 @@ const homePage =
   await contentfulClient.withoutUnresolvableLinks.getEntries<TypeHomePageSkeleton>(
     {
       content_type: "homePage",
+      include: 3
     },
   );
 const homeFields = homePage.items[0].fields;
