@@ -23,7 +23,7 @@ export type TypeAboutUsSkeleton = EntrySkeletonType<
 >;
 export type TypeAboutUs<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeAboutUsSkeleton, Modifiers, Locales>;
 
 export interface TypeBannerFields {
@@ -35,7 +35,7 @@ export interface TypeBannerFields {
 export type TypeBannerSkeleton = EntrySkeletonType<TypeBannerFields, "banner">;
 export type TypeBanner<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeBannerSkeleton, Modifiers, Locales>;
 
 export interface TypeBlogPostFields {
@@ -52,7 +52,7 @@ export type TypeBlogPostSkeleton = EntrySkeletonType<
 >;
 export type TypeBlogPost<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeBlogPostSkeleton, Modifiers, Locales>;
 
 export interface TypeButtonFields {
@@ -63,7 +63,7 @@ export interface TypeButtonFields {
 export type TypeButtonSkeleton = EntrySkeletonType<TypeButtonFields, "button">;
 export type TypeButton<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeButtonSkeleton, Modifiers, Locales>;
 
 export interface TypeCarouselImagesFields {
@@ -76,7 +76,7 @@ export type TypeCarouselImagesSkeleton = EntrySkeletonType<
 >;
 export type TypeCarouselImages<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeCarouselImagesSkeleton, Modifiers, Locales>;
 
 export interface TypeCommunityPageFields {
@@ -99,7 +99,7 @@ export type TypeCommunityPageSkeleton = EntrySkeletonType<
 >;
 export type TypeCommunityPage<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeCommunityPageSkeleton, Modifiers, Locales>;
 
 export interface TypeContactFields {
@@ -113,7 +113,7 @@ export type TypeContactSkeleton = EntrySkeletonType<
 >;
 export type TypeContact<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeContactSkeleton, Modifiers, Locales>;
 
 export interface TypeEmployeeCardFields {
@@ -130,7 +130,7 @@ export type TypeEmployeeCardSkeleton = EntrySkeletonType<
 >;
 export type TypeEmployeeCard<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeEmployeeCardSkeleton, Modifiers, Locales>;
 
 export interface TypeGeneralCardFields {
@@ -147,7 +147,7 @@ export type TypeGeneralCardSkeleton = EntrySkeletonType<
 >;
 export type TypeGeneralCard<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeGeneralCardSkeleton, Modifiers, Locales>;
 
 export interface TypeHomePageFields {
@@ -168,7 +168,7 @@ export type TypeHomePageSkeleton = EntrySkeletonType<
 >;
 export type TypeHomePage<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeHomePageSkeleton, Modifiers, Locales>;
 
 export interface TypeImageCardsFields {
@@ -184,7 +184,7 @@ export type TypeImageCardsSkeleton = EntrySkeletonType<
 >;
 export type TypeImageCards<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeImageCardsSkeleton, Modifiers, Locales>;
 
 export interface TypeInTheNewsFields {
@@ -201,13 +201,17 @@ export type TypeInTheNewsSkeleton = EntrySkeletonType<
 >;
 export type TypeInTheNews<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeInTheNewsSkeleton, Modifiers, Locales>;
 
 export interface TypeServicesPageFields {
   slug?: EntryFieldTypes.Symbol;
+  infoBanner?: EntryFieldTypes.EntryLink<TypeStackSkeleton>;
   servicesBanner?: EntryFieldTypes.EntryLink<TypeBannerSkeleton>;
   serviceCards: EntryFieldTypes.Array<
+    EntryFieldTypes.EntryLink<TypeGeneralCardSkeleton>
+  >;
+  certifications?: EntryFieldTypes.Array<
     EntryFieldTypes.EntryLink<TypeGeneralCardSkeleton>
   >;
 }
@@ -218,7 +222,7 @@ export type TypeServicesPageSkeleton = EntrySkeletonType<
 >;
 export type TypeServicesPage<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeServicesPageSkeleton, Modifiers, Locales>;
 
 export interface TypeStackFields {
@@ -236,7 +240,7 @@ export interface TypeStackFields {
 export type TypeStackSkeleton = EntrySkeletonType<TypeStackFields, "stack">;
 export type TypeStack<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeStackSkeleton, Modifiers, Locales>;
 
 export interface TypeTestimonialSlideFields {
@@ -253,7 +257,7 @@ export type TypeTestimonialSlideSkeleton = EntrySkeletonType<
 >;
 export type TypeTestimonialSlide<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeTestimonialSlideSkeleton, Modifiers, Locales>;
 
 export interface TypeTextAndImageFields {
@@ -268,5 +272,5 @@ export type TypeTextAndImageSkeleton = EntrySkeletonType<
 >;
 export type TypeTextAndImage<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeTextAndImageSkeleton, Modifiers, Locales>;

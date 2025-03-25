@@ -1,0 +1,96 @@
+---
+import type { Entry } from "contentful";
+import type { TypeServicesPageSkeleton } from "@/types/contentful";
+import ArrowsBackground from "../_components/ArrowsBackground";
+import { Image } from "astro:assets";
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+
+interface Props {
+  data: Entry<TypeServicesPageSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>;
+}
+
+const { data } = Astro.props;
+const cards = data.fields.serviceCards;
+const info = data.fields.infoBanner;
+const certCards = data.fields.certifications;
+---
+
+<div>
+  <ArrowsBackground client:only />
+  <section class="p-8 md:p-20">
+    <div
+      class="w-full flex gap-4 md:gap-8 justify-center items-center flex-wrap"
+    >
+      <h1 class="text-2xl md:text-5xl text-primary">Our Services</h1>
+    </div>
+    <p class="py-4 md:py-12 max-w-screen-md m-auto text-lg md:text-2xl font-light text-justify md:leading-relaxed">
+      {info?.fields.text}
+    </p>
+  </section>
+
+  <section
+    class="flex justify-center  p-4 md:p-8 gap-8 md:flex-row flex-col flex-wrap"
+  >
+    {
+      cards.map((card) => (
+        <div class="h-fit md:max-w-96 p-4 border border-border rounded bg-background ">
+          <div class="flex gap-4">
+            <div class="h-20 w-20 p-2 bg-primary rounded">
+              <Image
+                class="object-contain h-full"
+                src={card?.fields.icon?.fields.file?.url ?? ""}
+                alt={card?.fields.icon?.fields.title ?? ""}
+                width={100}
+                height={100}
+              />
+            </div>
+            <div class="flex-1">
+              <h3 class="text-2xl font-medium mb-1">{card?.fields.title}</h3>
+              <p class="text-sm font-light">{card?.fields.description}</p>
+            </div>
+          </div>
+
+          <div class="my-4 bg-border h-[1px] w-11/12 mx-auto" />
+
+          <div>
+            {card?.fields.dynamicContent && (
+              <article
+                set:html={documentToHtmlString(card?.fields.dynamicContent)}
+                class="card-dynamic"
+              />
+            )}
+          </div>
+        </div>
+      ))
+    }
+  </section>
+
+  <section class="max-w-screen-lg m-auto md:p-12 mt-12">
+    <h2 class="w-full text-center text-2xl md:text-5xl text-primary mb-4 md:mb-12">Our Certifications</h2>
+
+    <div class="flex flex-wrap justify-center">
+      {certCards?.map(cert => (
+        <div class="p-8 basis-full md:basis-1/2 rounded">
+          <Image
+            class="w-full"
+            src={cert?.fields.icon?.fields.file?.url ?? ""}
+            alt={cert?.fields.icon?.fields.title ?? ""}
+            width={500}
+            height={500}
+          />
+        </div>
+      ))}
+    </div>
+  </section>
+</div>
+
+<style is:global>
+  .card-dynamic > p {
+    margin: 24px 0px;
+  }
+
+  .card-dynamic > ul {
+    padding: 1.5rem;
+    list-style: circle;
+  }
+</style>
