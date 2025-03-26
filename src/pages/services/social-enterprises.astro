@@ -5,6 +5,8 @@ import { contentfulClient } from "../../lib/contentful";
 import type { TypeServicesPageSkeleton } from "@/types/contentful";
 import ServicesLayout from "./_components/services_layout.astro";
 
+return Astro.redirect("/services")
+
 const sePage =
   await contentfulClient.withoutUnresolvableLinks.getEntry<TypeServicesPageSkeleton>(
     "63IiHPmtm6FQm5l2i9aDQr",

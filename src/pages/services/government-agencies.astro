@@ -5,6 +5,8 @@ import { contentfulClient } from "@/lib/contentful";
 import type { TypeServicesPageSkeleton } from "@/types/contentful";
 import ServicesLayout from "./_components/services_layout.astro";
 
+return Astro.redirect("/services")
+
 const gaPage =
   await contentfulClient.withoutUnresolvableLinks.getEntry<TypeServicesPageSkeleton>(
     "3XWQI9Fzmb1u2SiHgc9mtf",

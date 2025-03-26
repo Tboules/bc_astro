@@ -1,10 +1,4 @@
-import {
-  NAV_SCHEMA,
-  findBasePath,
-  type INavItem,
-  NavIcon,
-  NAV_MAP,
-} from "@/lib/nav_schema";
+import { NAV_SCHEMA, type INavItem, NavIcon, NAV_MAP } from "@/lib/nav_schema";
 import Svgs from "../Svgs";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
@@ -28,11 +22,31 @@ export function WideNav() {
       <NavigationMenu>
         <NavigationMenuList>
           {NAV_SCHEMA.map((item) => (
-            <WideNavItem key={item.display} item={item} />
+            <WideNavNoServices key={item.display} item={item} />
           ))}
         </NavigationMenuList>
       </NavigationMenu>
     </div>
+  );
+}
+
+function WideNavNoServices({ item }: { item: INavItem }) {
+  const { isBasePath } = useNavContext();
+
+  return (
+    <NavigationMenuItem>
+      <NavigationMenuLink
+        className={cn(
+          navigationMenuTriggerStyle(),
+          "bg-transparent",
+          isBasePath(item.path) ? "text-primary" : "",
+          item.display == "Contact" ? "bg-primary text-primary-foreground" : "",
+        )}
+        href={item.path}
+      >
+        {item.display}
+      </NavigationMenuLink>
+    </NavigationMenuItem>
   );
 }
 
@@ -67,27 +81,31 @@ function WideNavItem({ item }: { item: INavItem }) {
           </NavigationMenuTrigger>
           <NavigationMenuContent className="p-4">
             <ul className="flex gap-2">
-              {item.sub?.map((subItem) => (
-                <li key={subItem.display}>
-                  <NavigationMenuLink
-                    className={cn(
-                      "flex flex-col w-48 p-2 pt-10 gap-2 shadow-sm border border-border rounded hover:bg-primary-foreground group transition-all",
-                      isCurrentPath(subItem.path) ? "border-primary" : "",
-                    )}
-                    href={subItem.path}
-                  >
-                    <NavIcon route={subItem} />
-                    <h3 className="text-xl font-medium text-primary">
-                      {subItem.display}
-                    </h3>
-                    <p className="text-foreground italic text-xs">
-                      {subItem.display == "Social Enterprises"
-                        ? "We’ll help you build your business infrastructure, get funding ready, and win government grants and contracts"
-                        : "We work with government agencies to complete their strategic plans, position themselves for funding, and win grants"}
-                    </p>
-                  </NavigationMenuLink>
-                </li>
-              ))}
+              {item.sub ? (
+                item.sub?.map((subItem) => (
+                  <li key={subItem.display}>
+                    <NavigationMenuLink
+                      className={cn(
+                        "flex flex-col w-48 p-2 pt-10 gap-2 shadow-sm border border-border rounded hover:bg-primary-foreground group transition-all",
+                        isCurrentPath(subItem.path) ? "border-primary" : "",
+                      )}
+                      href={subItem.path}
+                    >
+                      <NavIcon route={subItem} />
+                      <h3 className="text-xl font-medium text-primary">
+                        {subItem.display}
+                      </h3>
+                      <p className="text-foreground italic text-xs">
+                        {subItem.display == "Social Enterprises"
+                          ? "We’ll help you build your business infrastructure, get funding ready, and win government grants and contracts"
+                          : "We work with government agencies to complete their strategic plans, position themselves for funding, and win grants"}
+                      </p>
+                    </NavigationMenuLink>
+                  </li>
+                ))
+              ) : (
+                <></>
+              )}
             </ul>
           </NavigationMenuContent>
         </>
@@ -151,29 +169,29 @@ export function MobileNavBaseCard({ item }: { item: INavItem }) {
         <SheetTrigger asChild>
           <a
             className="flex gap-2 items-center w-full h-full p-4"
-            href={item.path !== "/services" ? item.path : "#"}
+            href={item.path}
           >
             <NavIcon route={item} />
             <p>{item.display}</p>
           </a>
         </SheetTrigger>
       </li>
-      {item.sub && (
-        <ul className="flex flex-col pl-4 mt-2 gap-2">
-          {item.sub.map((subItem) => {
-            return (
-              <li key={subItem.display}>
-                <a
-                  className="flex px-4 py-2 hover:italic text-foreground bg-secondary rounded "
-                  href={subItem.path}
-                >
-                  {subItem.display}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
-      )}
+      {/* {item.sub && ( */}
+      {/*   <ul className="flex flex-col pl-4 mt-2 gap-2"> */}
+      {/*     {item.sub.map((subItem) => { */}
+      {/*       return ( */}
+      {/*         <li key={subItem.display}> */}
+      {/*           <a */}
+      {/*             className="flex px-4 py-2 hover:italic text-foreground bg-secondary rounded " */}
+      {/*             href={subItem.path} */}
+      {/*           > */}
+      {/*             {subItem.display} */}
+      {/*           </a> */}
+      {/*         </li> */}
+      {/*       ); */}
+      {/*     })} */}
+      {/*   </ul> */}
+      {/* )} */}
     </div>
   );
 }
