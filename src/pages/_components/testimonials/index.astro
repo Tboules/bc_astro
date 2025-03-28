@@ -1,18 +1,28 @@
 ---
-import type { TypeTestimonialSlideSkeleton } from '@/types/contentful'
-import type { Entry } from 'contentful'
+import type { TypeTestimonialSlideSkeleton } from "@/types/contentful";
+import type { Entry } from "contentful";
 
 interface Props {
-  testimonials: (Entry<TypeTestimonialSlideSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string> | undefined)[] | undefined
+  testimonials:
+    | (
+        | Entry<
+            TypeTestimonialSlideSkeleton,
+            "WITHOUT_UNRESOLVABLE_LINKS",
+            string
+          >
+        | undefined
+      )[]
+    | undefined;
 }
 
-const {testimonials} = Astro.props
+const { testimonials } = Astro.props;
 
 if (!testimonials) return;
 
-const firstTestimonial = testimonials[0]
-const secondTestimonial = testimonials[1]
+const firstTestimonial = testimonials[0];
+const secondTestimonial = testimonials[1];
 ---
+
 <section class="py-16 sm:py-8">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div
@@ -32,8 +42,12 @@ const secondTestimonial = testimonials[1]
           </blockquote>
           <figcaption class="mt-10 flex items-center gap-x-6">
             <div class="text-base">
-              <div class="font-semibold text-primary">{firstTestimonial?.fields.name}</div>
-              <div class="mt-1 text-gray-500">{firstTestimonial?.fields.jobTitle}</div>
+              <div class="font-semibold text-primary">
+                {firstTestimonial?.fields.name}
+              </div>
+              <div class="mt-1 text-gray-500">
+                {firstTestimonial?.fields.jobTitle}
+              </div>
             </div>
           </figcaption>
         </figure>
@@ -53,8 +67,12 @@ const secondTestimonial = testimonials[1]
           </blockquote>
           <figcaption class="mt-10 flex items-center gap-x-6">
             <div class="text-base">
-              <div class="font-semibold text-primary">{secondTestimonial?.fields.name}</div>
-              <div class="mt-1 text-gray-500">{secondTestimonial?.fields.jobTitle}</div>
+              <div class="font-semibold text-primary">
+                {secondTestimonial?.fields.name}
+              </div>
+              <div class="mt-1 text-gray-500">
+                {secondTestimonial?.fields.jobTitle}
+              </div>
             </div>
           </figcaption>
         </figure>
