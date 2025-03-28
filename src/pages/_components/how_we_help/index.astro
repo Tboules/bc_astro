@@ -5,9 +5,27 @@ import PropelIcon from "@/assets/icons/propel.svg";
 import ArrowImage from "@/assets/shapes/arrow_ppp.svg";
 import { Image } from "astro:assets";
 import HowWeHelpCard from "./how_we_help_card.astro";
+import type { Entry } from "contentful";
+import type {
+  TypeGeneralCardSkeleton,
+  TypeStackSkeleton,
+} from "@/types/contentful";
+
+interface Props {
+  howWeHelp:
+    | Entry<TypeStackSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
+    | undefined;
+}
+
+const { howWeHelp } = Astro.props;
+const subjectMatterCards =
+  (howWeHelp?.fields.cards as (
+    | Entry<TypeGeneralCardSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>
+    | undefined
+  )[]) ?? [];
 ---
 
-<section class="max-w-screen-lg py-10 md:py-28 px-4 m-auto">
+<section class="max-w-screen-lg py-10 md:py-12 px-4 m-auto">
   <div class="md:flex justify-between">
     <h1
       class="text-xl md:text-4xl text-lin font-medium md:whitespace-nowrap mr-16 leading-loose"
@@ -19,7 +37,8 @@ import HowWeHelpCard from "./how_we_help_card.astro";
       competition for funding to yield truly sustainable and scalable impact.
     </p>
   </div>
-  <div class="py-4 md:py-12 w-full">
+
+  <div class="pt-8 md:pt-16 pb-24 w-full">
     <div class="gap-4 m-auto relative">
       <Image
         alt="Arrow SVG"
@@ -49,6 +68,61 @@ import HowWeHelpCard from "./how_we_help_card.astro";
           lineWidth="w-1/2"
         />
       </div>
+    </div>
+  </div>
+
+  <div class="py-24">
+    <h2
+      class="text-xl md:text-3xl md:mb-8 mb-4 text-primary font-medium md:whitespace-nowrap text-center"
+    >
+      Strategic Solutions for Impactful Initiatives
+    </h2>
+    <p class="font-semibold text-lg mb-4">
+      {howWeHelp?.fields.text}
+    </p>
+    <p class="text-lg">
+      {howWeHelp?.fields.text2}
+    </p>
+  </div>
+
+  <div class="py-12 sm:py-24">
+    <div class="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
+      <div class="max-w-xl">
+        <h2
+          class="text-pretty text-3xl font-semibold tracking-tight text-primary sm:text-4xl"
+        >
+          Subject Matter Expertise
+        </h2>
+        <p class="mt-6 text-lg/8 text-gray-600">
+          We help people help people and stuff
+        </p>
+      </div>
+      <ul
+        role="list"
+        class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2"
+      >
+        {
+          subjectMatterCards.map((card) => (
+            <li>
+              <div class="flex items-center gap-x-6">
+                <Image
+                  width={80}
+                  height={80}
+                  alt="subject matter icon"
+                  src={card?.fields.icon?.fields.file?.url ?? ""}
+                />
+                <div>
+                  <h3 class="text-base/7 font-semibold tracking-tight">
+                    {card?.fields.description}
+                  </h3>
+                </div>
+              </div>
+            </li>
+          ))
+        }
+
+        <!-- More people... -->
+      </ul>
     </div>
   </div>
 </section>
