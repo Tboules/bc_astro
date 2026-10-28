@@ -1,15 +1,12 @@
-import { defineConfig, passthroughImageService } from "astro/config";
+import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel";
 
 import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  image: {
-    service: passthroughImageService(),
-  },
   site: "https://boulesconsulting.org",
   integrations: [
     react(),
@@ -18,7 +15,7 @@ export default defineConfig({
     }),
     sitemap(),
   ],
-  output: "hybrid",
+  output: "static",
   adapter: vercel({
     includeFiles: ["./public/checklist.pdf"],
   }),
