@@ -5,7 +5,6 @@ import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import type { TypeBlogPostSkeleton } from "@/types/contentful";
 import type { InferGetStaticPropsType, GetStaticPaths } from "astro";
 import MainLayout from "@/components/layouts/main-layout.astro";
-import type { undefined } from "astro:schema";
 
 export const getStaticPaths = (async () => {
   const { items } =
