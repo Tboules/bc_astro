@@ -5,6 +5,7 @@ import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import type { TypeBlogPostSkeleton } from "@/types/contentful";
 import type { InferGetStaticPropsType, GetStaticPaths } from "astro";
 import MainLayout from "@/components/layouts/main-layout.astro";
+import type { undefined } from "astro:schema";
 
 export const getStaticPaths = (async () => {
   const { items } =
@@ -30,6 +31,15 @@ export const getStaticPaths = (async () => {
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { title, content } = Astro.props;
+
+// Posts that show an embedded presentation above the article body,
+// keyed by the part of the Contentful slug after "blog/".
+const presentationEmbeds: Record<string, string> = {
+  "Feasibility Study on Climate Resilient Vertical Farming":
+    "https://view.genially.com/6ae0c28f421e446ae2e88dad",
+};
+
+const presentationUrl = presentationEmbeds[Astro.params.slug];
 ---
 
 <MainLayout title={`${title} -- Boules Consulting`}>
@@ -39,6 +49,21 @@ const { title, content } = Astro.props;
         {title}
       </h1>
     </section>
+    {
+      presentationUrl && (
+        <section class="pb-8">
+          <div class="relative w-full aspect-video">
+            <iframe
+              title={title}
+              src={presentationUrl}
+              class="absolute inset-0 w-full h-full border-0"
+              loading="lazy"
+              allowfullscreen
+            />
+          </div>
+        </section>
+      )
+    }
     <section>
       <article class="blog-post" set:html={content} />
     </section>
