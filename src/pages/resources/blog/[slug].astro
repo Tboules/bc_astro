@@ -96,6 +96,17 @@ const presentationUrl = presentationEmbeds[Astro.params.slug];
     font-weight: 600;
   }
 
+  .blog-post a {
+    color: hsl(187 45% 30%);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .blog-post a:hover {
+    color: hsl(var(--primary));
+  }
+
   .blog-post u {
     text-decoration: underline;
   }
